@@ -214,7 +214,7 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .viewport { position: relative; height: 460px; background: #f7f4ee; overflow: hidden; }
 .viewport iframe { position: absolute; inset: 0 auto auto 0; z-index: 1; border: 0; width: 100%; height: 100%; background: #fff; pointer-events: none; }
 .poster { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: opacity .35s ease; }
-.poster.gone { opacity: 0; pointer-events: none; }
+.browser.live .poster { opacity: 0; pointer-events: none; }
 .browser.live iframe { pointer-events: auto; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 14px 0 0; padding: 0; }
 .chips li { font-size: 13px; font-weight: 700; border: 1.5px solid #111; border-radius: 999px; padding: 3px 9px; background: #fff; }
@@ -888,8 +888,6 @@ html[dir="rtl"] a[href^="mailto"] {
   var frameAr = { "1": "معاينة ProTrack V2", "2": "معاينة LifeCare", "3": "معاينة Codevera", "4": "معاينة MAF Admin", "5": "معاينة Alpine" };
   document.querySelectorAll(".project iframe").forEach(function (frame) {
     frame.setAttribute("data-en", frame.getAttribute("title"));
-    var poster = frame.previousElementSibling;
-    if (poster && poster.classList.contains("poster")) frame.addEventListener("load", function () { poster.classList.add("gone"); });
   });
   bind("#practice h2", "مقطع من سلوك ProTrack.");
   bind("#practice > .sub", "غيّر الدور. تتغير معه القائمة والأرقام والمساعد. البيانات هنا للتجربة، والنسخة العاملة تُبث من Grok داخل ProTrack.");
