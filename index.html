@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Mahmoud Ahmed — frontend and full-stack developer in Cairo. Enterprise products, multi-tenant SaaS, and whatever stack the work needs next.">
 <meta name="theme-color" content="#111111">
+<meta property="og:title" content="Mahmoud Ahmed — Frontend Developer">
+<meta property="og:description" content="Enterprise products, multi-tenant SaaS, and the stack the work needs. Cairo.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/MahmoudELdeba34/MyProtofolio/main/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mahmoud Ahmed — Frontend Developer">
+<meta name="twitter:description" content="Enterprise products, multi-tenant SaaS, and the stack the work needs. Cairo.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/MahmoudELdeba34/MyProtofolio/main/images/og.png">
 <title>Mahmoud Ahmed Mahmoud — Frontend Developer</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111111'/%3E%3Cpath fill='%23e2ff3f' d='M6.5 25V8h4.8l4.7 7.6L20.7 8H25.5v17h-4.1V14.4L17 21.2h-2L10.6 14.4V25H6.5z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,6 +105,7 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px;
 }
+.role { margin: -4px 0 12px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #111; box-shadow: 0 0 0 0 var(--y); animation: ping 1.6s ease-out infinite; }
 @keyframes ping { 70% { box-shadow: 0 0 0 8px transparent; } }
 .hero > div:first-child { position: relative; z-index: 2; }
@@ -203,11 +212,14 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .release, .browser.live .use { display: none; }
 .browser.live .release { display: inline; }
 .viewport { position: relative; height: 460px; background: #f7f4ee; overflow: hidden; }
-.viewport iframe { position: absolute; inset: 0 auto auto 0; border: 0; width: 100%; height: 100%; background: #fff; pointer-events: none; }
+.viewport iframe { position: absolute; inset: 0 auto auto 0; z-index: 1; border: 0; width: 100%; height: 100%; background: #fff; pointer-events: none; }
+.poster { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: opacity .35s ease; }
+.poster.gone { opacity: 0; pointer-events: none; }
 .browser.live iframe { pointer-events: auto; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 14px 0 0; padding: 0; }
 .chips li { font-size: 13px; font-weight: 700; border: 1.5px solid #111; border-radius: 999px; padding: 3px 9px; background: #fff; }
 .story { margin-top: 12px; color: #3f3c36; max-width: 75ch; }
+.outcome { margin: 8px 0 0; max-width: 75ch; font-weight: 700; }
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .slice { margin-top: 22px; background: #fff; color: #111; border: 2px solid #f6f3ea; border-radius: 20px; overflow: hidden; box-shadow: 10px 10px 0 var(--y); }
 .slice-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1.5px solid #111; background: var(--y); }
@@ -232,8 +244,13 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .ap-ma { background: #fff; border: 1.5px solid #111; }
 .ap-mu { background: #111; color: var(--y); align-self: flex-end; }
 #ap-q { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
-.skill { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid #2a2a2a; }
-.skill h3 { font-size: 18px; color: var(--y); }
+.skill { display: block; padding: 0; border-top: 1px solid #2a2a2a; }
+.skill summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer; list-style: none; }
+.skill summary::-webkit-details-marker { display: none; }
+.skill summary::after { content: "+"; color: var(--y); font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 22px; line-height: 1; }
+.skill[open] summary::after { content: "–"; }
+.skill h3 { margin: 0; font-size: 18px; color: var(--y); }
+.skill p { margin: 0 0 16px; max-width: 72ch; }
 .rows { list-style: none; margin: 22px 0 0; padding: 0; }
 .rows > li { display: grid; grid-template-columns: 220px 1fr; gap: 20px; padding: 22px 0; border-top: 1.5px solid #111; }
 .rows b { font-size: 26px; font-weight: 800; }
@@ -304,11 +321,12 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
 .langs button[aria-pressed="true"] { background: #111; color: var(--y); }
 html[dir="rtl"] body,
 html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
-html[dir="rtl"] .brand, html[dir="rtl"] .who b, html[dir="rtl"] .slice-top b, html[dir="rtl"] #pre {
+html[dir="rtl"] .brand, html[dir="rtl"] .who b, html[dir="rtl"] .role, html[dir="rtl"] .slice-top b, html[dir="rtl"] #pre {
   font-family: "Cairo", "Instrument Sans", sans-serif;
   letter-spacing: 0;
 }
 html[dir="rtl"] .kicker { letter-spacing: .04em; }
+html[dir="rtl"] .role { letter-spacing: 0; text-transform: none; font-size: 20px; }
 html[dir="rtl"] .hero h1 { line-height: 1.2; max-width: none; }
 html[dir="rtl"] section h2, html[dir="rtl"] footer.contact h2 { line-height: 1.25; max-width: 16em; }
 html[dir="rtl"] .lead { max-width: 38em; line-height: 1.85; }
@@ -364,6 +382,7 @@ html[dir="rtl"] a[href^="mailto"] {
   <section class="hero">
     <div>
       <p class="kicker"><i class="dot"></i> <span class="kick">Cairo · Remote · Open</span></p>
+      <p class="role">Frontend Developer</p>
       <h1 id="line">The product decides the stack.</h1>
       <p class="lead">Frontend developer with 3 years in Angular and TypeScript, building scalable web applications and enterprise SaaS. Frontend for <strong>ProTrack</strong> and <strong>MAF Admin Dashboard</strong>. Backend with Node.js, Express, and MongoDB on <strong>LifeCare</strong>, <strong>Codevera</strong>, and <strong>Alpine</strong>.</p>
       <div class="cta">
@@ -371,6 +390,7 @@ html[dir="rtl"] a[href^="mailto"] {
         <a class="btn" href="tel:+201019672937">+20 101 967 2937</a>
         <a class="btn" href="https://github.com/MahmoudELdeba34" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/mahmoud-ahmed-986276196/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn cv" href="https://drive.google.com/file/d/1Hf_NuVkRDCiVPggp3Y0C7li3XO6pyVso/view?usp=sharing" target="_blank" rel="noopener">CV</a>
         <a class="btn" href="#work">See the work</a>
       </div>
     </div>
@@ -409,9 +429,9 @@ html[dir="rtl"] a[href^="mailto"] {
     </div>
     <p id="lens-live" class="visually-hidden" aria-live="polite">Showing the frontend view.</p>
     <div class="own" id="own-g">
-      <article><h3>Interface architecture</h3><p>Standalone components, Signals, and RxJS in systems another developer can extend without a tour.</p></article>
-      <article><h3>Speed you can measure</h3><p>Lazy loading and tighter change detection. Page load down 25%, and the same feel at 1,000+ concurrent users.</p></article>
-      <article><h3>Intelligence in the product</h3><p>Streamed assistants in ProTrack, LifeCare, and Codevera. Keys, prompts, and context treated as product decisions.</p></article>
+      <article><h3>Interface architecture</h3></summary><p>Standalone components, Signals, and RxJS in systems another developer can extend without a tour.</p></article>
+      <article><h3>Speed you can measure</h3></summary><p>Lazy loading and tighter change detection. Page load down 25%, and the same feel at 1,000+ concurrent users.</p></article>
+      <article><h3>Intelligence in the product</h3></summary><p>Streamed assistants in ProTrack, LifeCare, and Codevera. Keys, prompts, and context treated as product decisions.</p></article>
     </div>
   </section>
 
@@ -428,11 +448,12 @@ html[dir="rtl"] a[href^="mailto"] {
         </div>
         <p class="blurb">Sole frontend owner and project lead. The assistant lives inside the product.</p>
         <div class="browser">
-          <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">v2.pro-track.cloud/login</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://v2.pro-track.cloud/login" target="_blank" rel="noopener">Open</a></div>
-          <div class="viewport"><iframe src="https://v2.pro-track.cloud/login" title="ProTrack V2 live preview" loading="eager" fetchpriority="high" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">v2.pro-track.cloud</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://v2.pro-track.cloud/" target="_blank" rel="noopener">Open</a></div>
+          <div class="viewport"><img class="poster" src="images/protrack.jpg" alt="ProTrack"><iframe src="https://v2.pro-track.cloud/login" title="ProTrack V2 live preview" loading="eager" fetchpriority="high" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>ASP.NET Core</li><li>SignalR</li><li>SQL Server</li><li>Grok</li></ul>
         <p class="story">Attendance, leave, payroll, and tasks, with a different UI for Super Admin, Tenant Admin, Manager, and Employee. The assistant streams context-aware answers through HR and payroll. I co-designed the REST contracts with the backend team.</p>
+        <p class="outcome">HR, payroll, and tasks were separate steps. I owned the Angular frontend and the assistant, with a different screen for each of 4 roles, and cut manual QA checks by about 30%.</p>
         <div class="links"><a class="btn primary" href="https://v2.pro-track.cloud/" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/Hrigo-Project/ProTrack-V2" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="2" data-tags="fullstack frontend backend crm">
@@ -444,10 +465,11 @@ html[dir="rtl"] a[href^="mailto"] {
         <p class="blurb">EMR, scheduling, billing, HR, CRM, and a patient portal. AI sits in the medical workflow.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">medical-care-n4in-sigma.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://medical-care-n4in-sigma.vercel.app" target="_blank" rel="noopener">Open</a></div>
-          <div class="viewport"><iframe src="https://medical-care-n4in-sigma.vercel.app" title="LifeCare live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="viewport"><img class="poster" src="images/lifecare.jpg" alt="LifeCare"><iframe src="https://medical-care-n4in-sigma.vercel.app" title="LifeCare live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>JWT</li><li>RAG</li></ul>
         <p class="story">Fourteen modules and 65 automated tests. JWT access and refresh tokens rotate. Thirteen RBAC roles, including a Doctor 360° view across 10 related records.</p>
+        <p class="outcome">Records, scheduling, and billing were apart. I built the system: 14 modules, 70+ REST endpoints, and 13 roles, including a doctor view across 10 related records.</p>
         <div class="links"><a class="btn primary" href="https://medical-care-n4in-sigma.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Medical-Care" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="3" data-tags="fullstack frontend backend">
@@ -459,10 +481,11 @@ html[dir="rtl"] a[href^="mailto"] {
         <p class="blurb">A tutor that reads the student’s code, plus real-time duels and chat.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">codevera-tech.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://codevera-tech.vercel.app" target="_blank" rel="noopener">Open</a></div>
-          <div class="viewport"><iframe src="https://codevera-tech.vercel.app" title="Codevera live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="viewport"><img class="poster" src="images/codevera.jpg" alt="Codevera"><iframe src="https://codevera-tech.vercel.app" title="Codevera live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular</li><li>Node.js</li><li>MongoDB</li><li>Socket.io</li><li>Groq</li><li>Monaco</li></ul>
         <p class="story">The tutor, on Groq with RAG, aims the student at the fix without handing over the answer. Socket.io runs the battles and a live chat with voice notes. Exams carry anti-cheat telemetry. Arabic RTL and dark mode.</p>
+        <p class="outcome">Students needed a tutor that does not hand over the answer. I built the Groq tutor, live 1v1 battles, and Arabic RTL in the same product.</p>
         <div class="links"><a class="btn primary" href="https://codevera-tech.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Codevara" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="4" data-tags="crm frontend fullstack backend">
@@ -474,10 +497,11 @@ html[dir="rtl"] a[href^="mailto"] {
         <p class="blurb">Sales, spare parts, and service booking, with live notifications.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">maf-admindashboard.runasp.net</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://maf-admindashboard.runasp.net" target="_blank" rel="noopener">Open</a></div>
-          <div class="viewport"><iframe src="https://maf-admindashboard.runasp.net" title="MAF Admin live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="viewport"><img class="poster" src="images/maf.jpg" alt="MAF Admin"><iframe src="https://maf-admindashboard.runasp.net" title="MAF Admin live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>ASP.NET Core</li><li>SignalR</li><li>SQL Server</li><li>SCSS</li></ul>
         <p class="story">Team lead. Clean Architecture, JWT interceptors, route guards, SSR, and SignalR notifications. Users, products, orders, payouts, rewards, and ads, on desktop, tablet, and mobile.</p>
+        <p class="outcome">Sales, parts, and service bookings needed one console. I led the frontend: 6 modules and live SignalR notifications on desktop, tablet, and mobile.</p>
         <div class="links"><a class="btn primary" href="https://maf-admindashboard.runasp.net" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/Hrigo-Project/Maf-Admin-Dashboard" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="5" data-tags="fullstack frontend backend">
@@ -489,10 +513,11 @@ html[dir="rtl"] a[href^="mailto"] {
         <p class="blurb">Filters, a strap configurator, and a checkout the server actually checks.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">alpine-ui-beta.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://alpine-ui-beta.vercel.app" target="_blank" rel="noopener">Open</a></div>
-          <div class="viewport"><iframe src="https://alpine-ui-beta.vercel.app" title="Alpine live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="viewport"><img class="poster" src="images/alpine.jpg" alt="Alpine"><iframe src="https://alpine-ui-beta.vercel.app" title="Alpine live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>Signals</li><li>Node.js</li><li>Express</li><li>SQLite</li><li>Vercel</li></ul>
         <p class="story">Brand and model filters, a strap configurator, cash on delivery, and card checkout with a 3D Secure OTP step. Phone and address validation is enforced on the API.</p>
+        <p class="outcome">The catalog had to take a real payment. I built filters, a strap configurator, and card checkout with a 3D Secure OTP check on the API.</p>
         <div class="links"><a class="btn primary" href="https://alpine-ui-beta.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Apin-" target="_blank" rel="noopener">Source</a></div>
       </article>
     </div>
@@ -524,14 +549,14 @@ html[dir="rtl"] a[href^="mailto"] {
     <p class="kicker"><span class="kick">Skills</span></p>
     <h2>What I work with.</h2>
     <p class="sub">If a role needs a tool that is not on this list, that is the first task, not a reason to wait.</p>
-    <div class="skill"><h3>Frontend</h3><p>Angular (v12 through latest), standalone components, Signals, TypeScript, JavaScript (ES6+), RxJS, React, HTML5, CSS3, SCSS, Tailwind CSS, Bootstrap, Angular Material, jQuery, Monaco Editor, responsive and cross-browser UI, RTL and i18n.</p></div>
-    <div class="skill"><h3>AI in products</h3><p>LLM APIs (Grok, Groq, Gemini), RAG with embeddings and vector search, assistants, secure API-key handling, prompt design, streaming chat UI.</p></div>
-    <div class="skill"><h3>API integration</h3><p>REST, SignalR and Socket.io, JWT interceptors and route guards, Swagger and Postman. Working knowledge of ASP.NET Core Web API, Node.js, and SQL Server.</p></div>
-    <div class="skill"><h3>Architecture</h3><p>Component-based architecture, SOLID, Clean Architecture, reusable UI systems, lazy loading, performance work that shows up in the numbers.</p></div>
-    <div class="skill"><h3>Enterprise</h3><p>Multi-tenant SaaS, role-based access control, operational dashboards. Dynamics 365 and Power Platform through ITI.</p></div>
-    <div class="skill"><h3>Commerce</h3><p>Shopify, plus a custom storefront in Alpine with server-side validation.</p></div>
-    <div class="skill"><h3>Tools</h3><p>Git and GitHub, GitHub Actions, Azure DevOps basics, Vercel and Netlify.</p></div>
-    <div class="skill"><h3>Languages</h3><p>Arabic, native. English, fluent.</p></div>
+    <details class="skill"><summary><h3>Frontend</h3></summary><p>Angular (v12 through latest), standalone components, Signals, TypeScript, JavaScript (ES6+), RxJS, React, HTML5, CSS3, SCSS, Tailwind CSS, Bootstrap, Angular Material, jQuery, Monaco Editor, responsive and cross-browser UI, RTL and i18n.</p></details>
+    <details class="skill"><summary><h3>AI in products</h3></summary><p>LLM APIs (Grok, Groq, Gemini), RAG with embeddings and vector search, assistants, secure API-key handling, prompt design, streaming chat UI.</p></details>
+    <details class="skill"><summary><h3>API integration</h3></summary><p>REST, SignalR and Socket.io, JWT interceptors and route guards, Swagger and Postman. Working knowledge of ASP.NET Core Web API, Node.js, and SQL Server.</p></details>
+    <details class="skill"><summary><h3>Architecture</h3></summary><p>Component-based architecture, SOLID, Clean Architecture, reusable UI systems, lazy loading, performance work that shows up in the numbers.</p></details>
+    <details class="skill"><summary><h3>Enterprise</h3></summary><p>Multi-tenant SaaS, role-based access control, operational dashboards. Dynamics 365 and Power Platform through ITI.</p></details>
+    <details class="skill"><summary><h3>Commerce</h3></summary><p>Shopify, plus a custom storefront in Alpine with server-side validation.</p></details>
+    <details class="skill"><summary><h3>Tools</h3></summary><p>Git and GitHub, GitHub Actions, Azure DevOps basics, Vercel and Netlify.</p></details>
+    <details class="skill"><summary><h3>Languages</h3></summary><p>Arabic, native. English, fluent.</p></details>
   </section>
 
   <section id="career">
@@ -604,6 +629,7 @@ html[dir="rtl"] a[href^="mailto"] {
       <a class="btn" href="tel:+201019672937">+20 101 967 2937</a>
       <a class="btn" href="https://github.com/MahmoudELdeba34" target="_blank" rel="noopener">GitHub</a>
       <a class="btn" href="https://www.linkedin.com/in/mahmoud-ahmed-986276196/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn cv" href="https://drive.google.com/file/d/1Hf_NuVkRDCiVPggp3Y0C7li3XO6pyVso/view?usp=sharing" target="_blank" rel="noopener">CV</a>
     </div>
   </footer>
 </div>
@@ -692,7 +718,7 @@ html[dir="rtl"] a[href^="mailto"] {
     document.getElementById("own-h").textContent = d.h;
     document.getElementById("own-l").textContent = d.l;
     document.getElementById("lens-live").textContent = d.live;
-    document.getElementById("own-g").innerHTML = d.items.map(function (o) { return "<article class='rv in'><h3>" + esc(o[0]) + "</h3><p>" + esc(o[1]) + "</p></article>"; }).join("");
+    document.getElementById("own-g").innerHTML = d.items.map(function (o) { return "<article class='rv in'><h3>" + esc(o[0]) + "</h3></summary><p>" + esc(o[1]) + "</p></article>"; }).join("");
     document.querySelectorAll(".lens button").forEach(function (b) {
       var label = lang === "ar" ? b.getAttribute("data-ar") : b.getAttribute("data-en");
       if (label) b.textContent = label;
@@ -806,6 +832,7 @@ html[dir="rtl"] a[href^="mailto"] {
       [ar ? "اعرض أنظمة الشركات" : "Read as enterprise", ar ? "عدسة" : "Lens", lensTo("crm")],
       [ar ? "راسل محمود" : "Email Mahmoud", ar ? "إجراء" : "Action", function () { location.href = "mailto:mahmoudeldeba8@gmail.com"; }],
       [ar ? "لينكدإن" : "Open LinkedIn", ar ? "إجراء" : "Action", function () { window.open("https://www.linkedin.com/in/mahmoud-ahmed-986276196/", "_blank", "noopener"); }],
+      [ar ? "السيرة" : "Open CV", ar ? "إجراء" : "Action", function () { window.open("https://drive.google.com/file/d/1Hf_NuVkRDCiVPggp3Y0C7li3XO6pyVso/view?usp=sharing", "_blank", "noopener"); }],
       [ar ? "English" : "عربي", ar ? "اللغة" : "Language", function () { setLang(lang === "ar" ? "en" : "ar"); }]
     ];
   }
@@ -816,9 +843,11 @@ html[dir="rtl"] a[href^="mailto"] {
   bind(".top nav a", ["النطاق", "الأعمال", "التجربة", "المهارات", "المسيرة", "تواصل"]);
   bind(".kick", ["القاهرة · عن بُعد · متاح", "نبذة", "النطاق", "أعمال مختارة", "تجربة", "المهارات", "المسيرة", "التعليم", "الشهادات", "تواصل"]);
   bind("#line", "المنتج يختار التقنية.");
+  bind(".role", "مطور واجهات");
   bind(".lead", "مطور واجهات بخبرة 3 سنوات في Angular و TypeScript، يبني تطبيقات ويب قابلة للتوسع ومنصات SaaS للشركات. الفرونت إند لـ <strong>ProTrack</strong> و <strong>MAF Admin Dashboard</strong>. والباك إند بـ Node.js و Express و MongoDB في <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong>.", true);
   bind(".hero .cta a[href^='mailto']", "راسلني");
   bind(".hero .cta a[href='#work']", "شاهد الأعمال");
+  bindSame(".cv", "السيرة");
   bind("#facts .fact span", ["سنوات في تطبيقات ويب تعمل فعليًا", "مستخدم في الوقت نفسه، وبالأداء نفسه", "أسرع في متوسط تحميل الصفحة", "قطاعات وصلت إلى الإنتاج"]);
   bind("#about h2", "أملك الواجهة، وأستطيع إكمال العمل بعدها.");
   bind("#about .sub", [
@@ -843,6 +872,13 @@ html[dir="rtl"] a[href^="mailto"] {
     "قائد الفريق. Clean Architecture، واعتراضات JWT، وحماية المسارات، و SSR، وإشعارات SignalR. مستخدمون ومنتجات وطلبات ومستحقات ومكافآت وإعلانات، على الكمبيوتر والتابلت والموبايل.",
     "فلاتر الماركة والموديل، وتخصيص للسوار، والدفع عند الاستلام، والدفع بالبطاقة بخطوة 3D Secure و OTP. التحقق من الهاتف والعنوان مفروض على الـ API."
   ]);
+  bind(".project .outcome", [
+    "الحضور والمرتبات والمهام كانت خطوات منفصلة. ملكت واجهة Angular والمساعد، بشاشة مختلفة لكل دور من 4 أدوار، وانخفضت فحوصات الجودة اليدوية بنحو 30%.",
+    "السجلات والمواعيد والفوترة كانت متفرقة. بنيت النظام: 14 وحدة، وأكثر من 70 واجهة REST، و13 دورًا، ومنها عرض الطبيب عبر 10 سجلات مرتبطة.",
+    "الطلاب احتاجوا معلّمًا لا يسلّم الإجابة. بنيت معلّم Groq، ومبارزات 1 ضد 1 مباشرة، والعربية باتجاه RTL في المنتج نفسه.",
+    "المبيعات وقطع الغيار وحجز الصيانة احتاجت لوحة واحدة. قدت الواجهة: 6 وحدات وإشعارات SignalR مباشرة على الكمبيوتر والتابلت والموبايل.",
+    "الكتالوج كان لازم يستقبل دفعًا حقيقيًا. بنيت الفلاتر، وتخصيص السوار، والدفع بالبطاقة مع تحقق 3D Secure و OTP على الـ API."
+  ]);
   bindSame(".also", "ضمن النطاق أيضًا");
   bindSame(".use", "جرّب التطبيق");
   bindSame(".release", "إيقاف");
@@ -852,6 +888,8 @@ html[dir="rtl"] a[href^="mailto"] {
   var frameAr = { "1": "معاينة ProTrack V2", "2": "معاينة LifeCare", "3": "معاينة Codevera", "4": "معاينة MAF Admin", "5": "معاينة Alpine" };
   document.querySelectorAll(".project iframe").forEach(function (frame) {
     frame.setAttribute("data-en", frame.getAttribute("title"));
+    var poster = frame.previousElementSibling;
+    if (poster && poster.classList.contains("poster")) frame.addEventListener("load", function () { poster.classList.add("gone"); });
   });
   bind("#practice h2", "مقطع من سلوك ProTrack.");
   bind("#practice > .sub", "غيّر الدور. تتغير معه القائمة والأرقام والمساعد. البيانات هنا للتجربة، والنسخة العاملة تُبث من Grok داخل ProTrack.");

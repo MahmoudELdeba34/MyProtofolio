@@ -10,6 +10,7 @@ The site is one file: open [`index.html`](index.html) in a browser. It is Englis
 - Phone: [+20 101 967 2937](tel:+201019672937)
 - LinkedIn: [mahmoud-ahmed-986276196](https://www.linkedin.com/in/mahmoud-ahmed-986276196/)
 - GitHub: [MahmoudELdeba34](https://github.com/MahmoudELdeba34)
+- CV: [Frontend CV](https://drive.google.com/file/d/1Hf_NuVkRDCiVPggp3Y0C7li3XO6pyVso/view?usp=sharing)
 
 ## Selected work
 
@@ -23,7 +24,8 @@ The site is one file: open [`index.html`](index.html) in a browser. It is Englis
 
 ## What's in the page
 
-- Five live products, each embedded from its real deployment
+- Five live products, each embedded from its real deployment, with a still if the frame is slow
+- A frontend CV link in the hero and the contact section
 - A lens that reorders the work: frontend, backend, full-stack, enterprise
 - A ProTrack role demo: Super Admin, Tenant Admin, Manager, Employee
 - Career, education, and certifications from the current CV
