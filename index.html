@@ -82,11 +82,14 @@ button { font: inherit; color: inherit; }
   background: color-mix(in srgb, var(--bg) 78%, transparent);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
+  transition: background .2s ease, border-color .2s ease;
 }
+.top.stuck { border-bottom-color: #111; background: color-mix(in srgb, var(--bg) 94%, #fff); }
 .brand { font-weight: 800; font-size: 18px; text-decoration: none; }
-.top nav { display: flex; gap: 18px; align-items: center; }
-.top nav a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: 14.5px; }
-.top nav a.on, .top nav a:hover { color: var(--ink); }
+.top nav { display: flex; gap: 8px; align-items: center; }
+.top nav a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: 14.5px; padding: 5px 10px; border-radius: 999px; }
+.top nav a:hover { color: var(--ink); }
+.top nav a.on { color: #111; background: var(--y); }
 #kbtn {
   border: 1.5px solid #111; background: #fff; border-radius: 999px;
   padding: 6px 10px; font-weight: 700; font-size: 12px; cursor: pointer;
@@ -105,7 +108,7 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px;
 }
-.role { margin: -4px 0 12px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 15px; letter-spacing: .16em; text-transform: uppercase; }
+.role { display: inline-block; margin: 0 0 14px; padding: 4px 10px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; background: var(--y); color: #111; border: 1.5px solid #111; box-shadow: 3px 3px 0 #111; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #111; box-shadow: 0 0 0 0 var(--y); animation: ping 1.6s ease-out infinite; }
 @keyframes ping { 70% { box-shadow: 0 0 0 8px transparent; } }
 .hero > div:first-child { position: relative; z-index: 2; }
@@ -130,7 +133,7 @@ button { font: inherit; color: inherit; }
 @keyframes disc { 50% { transform: scale(1.04) translateY(8px); } }
 .frame {
   border: 2px solid #111; border-radius: 28px; overflow: hidden; background: #fff;
-  box-shadow: 12px 12px 0 #111; aspect-ratio: 4/5;
+  box-shadow: 12px 12px 0 #111, inset 0 0 0 6px var(--y); aspect-ratio: 4/5;
 }
 .frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
 .who {
@@ -145,10 +148,11 @@ button { font: inherit; color: inherit; }
   box-shadow: 0 0 0 100vmax #111; clip-path: inset(0 -100vmax);
   margin-top: 18px;
 }
-.fact { padding-block: 28px; padding-inline-end: 22px; }
+.fact { padding-block: 28px; padding-inline: 22px; border-inline-end: 1px solid #2c2c2c; }
+.fact:last-child { border-inline-end: 0; }
 .fact b { display: block; font-size: clamp(36px, 4vw, 52px); font-weight: 800; font-style: italic; color: var(--y); line-height: .9; }
 .fact span { display: block; margin-top: 8px; color: #c8c2b6; font-size: 14px; max-width: 18ch; }
-.mq { direction: ltr; overflow: hidden; border-bottom: 1px solid var(--line); margin-top: 0; padding: 16px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.mq { direction: ltr; overflow: hidden; background: var(--y); border-block: 2px solid #111; margin-top: 8px; padding: 14px 0; box-shadow: 0 0 0 100vmax var(--y); clip-path: inset(0 -100vmax); }
 .mt { display: flex; align-items: center; width: max-content; animation: mq 28s linear infinite; }
 .mt span { display: inline-flex; align-items: center; gap: 10px; font: 800 26px/1 "Bricolage Grotesque", sans-serif; letter-spacing: -0.03em; white-space: nowrap; }
 .mt i { font: 800 26px/1 "Bricolage Grotesque", sans-serif; font-style: normal; opacity: .4; padding: 0 28px; }
@@ -190,6 +194,8 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
   background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 40%), rgba(226, 255, 63, .45), transparent 55%);
 }
+.project:nth-child(3n+2) { box-shadow: 10px 10px 0 #7dffe0; }
+.project:nth-child(3n) { box-shadow: 10px 10px 0 #c4b2ff; }
 .project:hover { box-shadow: 14px 14px 0 #111; }
 .project:hover::after { opacity: 1; }
 .project.dim { opacity: .55; }
@@ -223,31 +229,22 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .chips li { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; border: 1.5px solid #111; border-radius: 999px; padding: 3px 9px; background: #fff; }
 .chips svg { width: 14px; height: 14px; }
 .story { margin-top: 12px; color: #3f3c36; max-width: 75ch; }
-.outcome { margin: 8px 0 0; max-width: 75ch; font-weight: 700; }
+.outcome { margin: 10px 0 0; max-width: 75ch; font-weight: 700; border-inline-start: 4px solid var(--y); padding-inline-start: 12px; }
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.slice { margin-top: 22px; background: #fff; color: #111; border: 2px solid #f6f3ea; border-radius: 20px; overflow: hidden; box-shadow: 10px 10px 0 var(--y); }
-.slice-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 14px 16px; border-bottom: 1.5px solid #111; background: var(--y); }
-.slice-top b { font-family: "Bricolage Grotesque", sans-serif; font-size: 22px; font-weight: 800; }
-.app { display: grid; grid-template-columns: 170px 1fr 270px; min-height: 400px; }
-.ap-s { background: #f6f3ea; padding: 14px 10px; border-inline-end: 1.5px solid #111; }
-.ap-i { padding: 8px 10px; border-radius: 8px; color: #555; font-size: 14px; }
-.ap-i.on { background: #111; color: var(--y); font-weight: 700; }
-.ap-mn { padding: 14px; }
-.roles { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.roles button, .ap-b { border: 1.5px solid #111; background: #fff; border-radius: 999px; padding: 7px 11px; font-weight: 700; font-size: 13px; cursor: pointer; max-width: 100%; white-space: normal; text-align: start; }
-.roles button[aria-pressed="true"] { background: #111; color: var(--y); }
-.ap-k { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.ap-kc { border: 1.5px solid #111; border-radius: 12px; padding: 10px; }
-.ap-kc b { display: block; font-family: "Bricolage Grotesque", sans-serif; font-size: 26px; font-weight: 800; }
-.ap-kc span { color: #666; font-size: 12px; }
-.ap-c { display: flex; align-items: flex-end; gap: 7px; height: 110px; margin-top: 14px; border-bottom: 1.5px solid #111; }
-.ap-c i { flex: 1; display: block; height: 0; background: var(--y); border: 1.5px solid #111; border-bottom: 0; border-radius: 5px 5px 0 0; transition: height .7s cubic-bezier(.2,.7,.2,1); }
-.ap-ai { border-inline-start: 1.5px solid #111; padding: 12px; background: #fbfaf6; display: flex; flex-direction: column; gap: 8px; }
-#ap-log { display: flex; flex-direction: column; gap: 8px; min-height: 160px; max-height: 220px; overflow: auto; }
-.ap-ma, .ap-mu { padding: 8px 10px; border-radius: 12px; font-size: 14px; max-width: 95%; }
-.ap-ma { background: #fff; border: 1.5px solid #111; }
-.ap-mu { background: #111; color: var(--y); align-self: flex-end; }
-#ap-q { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.marks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.mark { background: var(--y); color: #111; border: 1.5px solid #111; box-shadow: 3px 3px 0 #111; padding: 5px 10px; font-weight: 800; font-size: 13px; }
+.thesis-story { margin: 16px 0 0; max-width: 78ch; font-size: 17px; line-height: 1.65; }
+.phones { display: flex; gap: 14px; overflow-x: auto; margin-top: 22px; padding: 4px 2px 12px; scroll-snap-type: x mandatory; }
+.phones figure { flex: 0 0 196px; margin: 0; scroll-snap-align: start; }
+.phones img { width: 100%; height: 400px; object-fit: cover; object-position: top center; display: block; background: #fff; border: 2px solid #111; border-radius: 26px; box-shadow: 8px 8px 0 var(--y); }
+.phones figcaption { margin-top: 8px; font-size: 13px; font-weight: 700; }
+.tsteps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.tstep { border: 1.5px solid #3a3a3a; border-radius: 16px; padding: 16px; }
+.tstep:first-child { background: var(--y); color: #111; border-color: #111; box-shadow: 6px 6px 0 #111; }
+.tstep h3 { margin: 0 0 8px; font-family: "Bricolage Grotesque", sans-serif; font-size: 22px; letter-spacing: -.02em; }
+.tstep p { margin: 0; font-size: 15px; line-height: 1.55; color: #d9d3c6; }
+.tstep:first-child p { color: #111; }
+.teamline { margin: 16px 0 0; max-width: 78ch; color: #b9b3a6; font-size: 14.5px; }
 .skill { display: block; padding: 0; border-top: 1px solid #2a2a2a; }
 .skill summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer; list-style: none; }
 .skill summary::-webkit-details-marker { display: none; }
@@ -280,26 +277,25 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
 #pal li.on { background: #111; color: var(--y); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 @media (max-width: 980px) {
-  .hero, .own, .split, .app, .rows > li, .skill { grid-template-columns: 1fr; }
+  .hero, .own, .split, .rows > li, .skill { grid-template-columns: 1fr; }
+  .tsteps { grid-template-columns: 1fr; }
   .shot { justify-self: center; width: min(100%, 360px); margin-top: 8px; }
   .disc { width: 100%; right: 0; top: 2%; }
   .hero { gap: 32px; padding-top: 32px; }
   .hero h1 { max-width: 14ch; }
-  .ap-s { display: none; }
-  .ap-ai { border-inline-start: 0; border-top: 1.5px solid #111; }
-  .ap-k { grid-template-columns: 1fr 1fr 1fr; }
 }
 @media (max-width: 720px) {
   .top { flex-wrap: wrap; padding: 12px 16px; }
   .wrap { padding: 0 16px; }
-  .top nav { order: 3; width: 100%; gap: 14px; overflow: auto; }
-  .top nav a { display: inline; white-space: nowrap; font-size: 14px; }
+  .top nav { order: 3; width: 100%; gap: 2px; overflow: auto; }
+  .top nav a { display: inline; white-space: nowrap; font-size: 14px; padding: 4px 8px; }
   .tools { margin-inline-start: auto; }
   .hero { padding-top: 20px; }
   .hero h1 { font-size: clamp(38px, 11vw, 52px); max-width: none; }
   .lead { font-size: 16px; }
   .facts, .project-top { grid-template-columns: 1fr 1fr; }
-  .fact { padding-block: 18px; padding-inline-end: 12px; }
+  .fact { padding-block: 18px; padding-inline: 12px; }
+  .fact:nth-child(2n) { border-inline-end: 0; }
   .fact b { font-size: 32px; }
   .fact span { max-width: none; }
   .metric { text-align: start; grid-column: 1 / -1; }
@@ -315,7 +311,7 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   #pre, #cr { display: none; }
-  .w, .disc, .dot, .mt, .rv, .ap-c i { animation: none; transition: none; opacity: 1; transform: none; }
+  .w, .disc, .dot, .mt, .rv { animation: none; transition: none; opacity: 1; transform: none; }
   .project, .project.rv, .project.rv.in { transform: none; }
   .btn:hover { transform: none; }
 }
@@ -325,7 +321,7 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
 .langs button[aria-pressed="true"] { background: #111; color: var(--y); }
 html[dir="rtl"] body,
 html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
-html[dir="rtl"] .brand, html[dir="rtl"] .who b, html[dir="rtl"] .role, html[dir="rtl"] .slice-top b, html[dir="rtl"] #pre {
+html[dir="rtl"] .brand, html[dir="rtl"] .who b, html[dir="rtl"] .role, html[dir="rtl"] .tstep h3, html[dir="rtl"] #pre {
   font-family: "Cairo", "Instrument Sans", sans-serif;
   letter-spacing: 0;
 }
@@ -333,6 +329,8 @@ html[dir="rtl"] .kicker { letter-spacing: .04em; }
 html[dir="rtl"] .role { letter-spacing: 0; text-transform: none; font-size: 20px; }
 html[dir="rtl"] .hero h1 { line-height: 1.2; max-width: none; }
 html[dir="rtl"] section h2, html[dir="rtl"] footer.contact h2 { line-height: 1.25; max-width: 16em; }
+html[dir="rtl"] .tstep p, html[dir="rtl"] .teamline, html[dir="rtl"] .thesis-story { line-height: 1.85; }
+html[dir="rtl"] .mark { letter-spacing: 0; }
 html[dir="rtl"] .lead { max-width: 38em; line-height: 1.85; }
 html[dir="rtl"] .sub, html[dir="rtl"] .story, html[dir="rtl"] .blurb { line-height: 1.85; }
 html[dir="rtl"] .sub { max-width: 44em; }
@@ -346,7 +344,6 @@ html[dir="rtl"] .fact b,
 html[dir="rtl"] .metric b,
 html[dir="rtl"] .idx,
 html[dir="rtl"] .url,
-html[dir="rtl"] .ap-kc b,
 html[dir="rtl"] .chips li,
 html[dir="rtl"] a[href^="tel"],
 html[dir="rtl"] a[href^="mailto"] {
@@ -368,7 +365,7 @@ html[dir="rtl"] a[href^="mailto"] {
   <nav aria-label="Sections">
     <a href="#range">Range</a>
     <a href="#work">Work</a>
-    <a href="#practice">Practice</a>
+    <a href="#thesis">Thesis</a>
     <a href="#skills">Skills</a>
     <a href="#career">Career</a>
     <a href="#contact">Contact</a>
@@ -527,25 +524,25 @@ html[dir="rtl"] a[href^="mailto"] {
     </div>
   </section>
 
-  <section id="practice" class="dark">
-    <p class="kicker"><span class="kick">Practice</span></p>
-    <h2>A slice of how ProTrack behaves.</h2>
-    <p class="sub">Change the role. Navigation, numbers, and the assistant change with it. Sample data on this page. Production streams from Grok inside ProTrack.</p>
-    <div class="slice">
-      <div class="slice-top"><b>ProTrack</b><span>Role changes the product</span></div>
-      <div class="app">
-        <aside class="ap-s" id="ap-nav"></aside>
-        <div class="ap-mn">
-          <div id="roles" class="roles" role="group" aria-label="Choose a user role"></div>
-          <div id="ap-k" class="ap-k"></div>
-          <div id="ap-c" class="ap-c" aria-hidden="true"></div>
-        </div>
-        <div class="ap-ai">
-          <div class="ap-h">Assistant</div>
-          <div id="ap-log" aria-live="polite"></div>
-          <div id="ap-q"></div>
-        </div>
-      </div>
+  <section id="thesis" class="dark">
+    <p class="kicker"><span class="kick">Graduation</span></p>
+    <h2>Skin scan, from a photo to a doctor.</h2>
+    <p class="sub">Classification of Skin Cancer Using Machine Learning. BSc Computer Science, El-Obour, 2022–2023.</p>
+    <div class="marks"><span class="mark">Team lead</span><span class="mark">Excellent</span></div>
+    <p class="thesis-story">I led CS-07. A patient photographs a spot. The Android app, written in Java, sends it to a Django REST API. A Keras network compares it with labeled benign and malignant lesions and returns a class. A malignant result suggests a doctor near their location, with the fee and the hours. If they cannot travel, they book a video consult and pay with Vodafone Cash, InstaPay, or another method. The same app keeps accounts, lesion history, chat, articles, and nutrition notes.</p>
+    <div class="phones">
+      <figure><img src="images/skin-splash.png" alt="Skin Cancer app splash"><figcaption class="shotcap">Open</figcaption></figure>
+      <figure><img src="images/skin-scan.png" alt="Take a photo of a skin spot"><figcaption class="shotcap">Scan</figcaption></figure>
+      <figure><img src="images/skin-result.png" alt="Lesion ready for classification"><figcaption class="shotcap">Result</figcaption></figure>
+      <figure><img src="images/skin-doctors.png" alt="Nearby and online doctors"><figcaption class="shotcap">Doctors</figcaption></figure>
+      <figure><img src="images/skin-book.png" alt="Book a doctor appointment"><figcaption class="shotcap">Book</figcaption></figure>
+      <figure><img src="images/skin-call.png" alt="Online video consultation"><figcaption class="shotcap">Consult</figcaption></figure>
+      <figure><img src="images/skin-data.png" alt="Labeled skin-lesion dataset"><figcaption class="shotcap">Dataset</figcaption></figure>
+    </div>
+    <div class="tsteps">
+      <article class="tstep"><h3>The model</h3><p>Images are scaled to 0–1, then augmented with flips, zoom, contrast, and rotation. Convolutions and max-pooling feed a dense layer of 128 units and a sigmoid output. About 2.1 million parameters, trained 100 epochs with Adam and binary cross-entropy. Held-out test: 84% accuracy, 83% precision, 82% recall. 2,637 training images, 660 test images, two classes.</p></article>
+      <article class="tstep"><h3>The path</h3><p>Scan, nearby doctors, then a consult if travel is not possible. The doctor card shows the specialty, the city, the hours, the rating, and the fee. Booking picks a day and a time. The video call runs in the app, and payment is Vodafone Cash, InstaPay, or another method.</p></article>
+      <article class="tstep"><h3>The team I led</h3><p>Eslam Mohamed and Mohamed Hassan, under Dr. Magdy Abdelghani, Eng. Asmaa Rizk, and Eng. Karim Abu Al-Azm. I led the team. The project was graded Excellent.</p></article>
     </div>
   </section>
 
@@ -655,7 +652,6 @@ html[dir="rtl"] a[href^="mailto"] {
   else pre.innerHTML = "Mahmoud".split("").map(function (c, i) { return '<i style="animation-delay:' + (i * 45) + 'ms">' + c + "</i>"; }).join("");
 
   var lensKey = "frontend";
-  var roleKey = "employee";
   var booted = false;
   var actions = [];
   var sel = 0;
@@ -699,21 +695,6 @@ html[dir="rtl"] a[href^="mailto"] {
     }
   };
 
-  var ROLES = {
-    en: {
-      super: { label: "Super Admin", n: ["Tenants", "Billing", "Audit log", "Settings"], k: [["128", "Tenants"], ["9,420", "Active users"], ["99.9%", "Uptime"]], b: [40, 55, 48, 70, 62, 80, 92], hello: "ProTrack assistant, Super Admin view. Ask below.", q: [["How do I add a tenant?", "Open Tenants, choose New tenant, pick a plan, and name the first Tenant Admin."], ["Who changed pricing?", "The audit log stores the person, the time, and the previous value."]] },
-      tenant: { label: "Tenant Admin", n: ["Employees", "Payroll", "Leave", "Reports"], k: [["214", "Employees"], ["9", "On leave today"], ["Ready", "Payroll"]], b: [60, 52, 66, 58, 74, 70, 85], hello: "ProTrack assistant, Tenant Admin view. Ask below.", q: [["How do I run payroll?", "Open Payroll, review attendance and leave, then approve. Payslips go out when you confirm."], ["Where do I approve leave?", "Open Leave, select the request, and approve it."]] },
-      manager: { label: "Manager", n: ["Team", "Tasks", "Approvals"], k: [["12", "Team members"], ["37", "Open tasks"], ["4", "Pending approvals"]], b: [30, 45, 38, 60, 52, 48, 64], hello: "ProTrack assistant, Manager view. Ask below.", q: [["How do I assign a task?", "Open Tasks, create one, pick the person and a due date."], ["Can I see team attendance?", "Team shows attendance for people who report to you, and nothing outside that team."]] },
-      employee: { label: "Employee", n: ["My tasks", "Attendance", "My leave", "Payslips"], k: [["6", "My tasks"], ["14", "Leave balance"], ["32", "Hours this week"]], b: [70, 80, 65, 85, 75, 20, 10], hello: "ProTrack assistant, Employee view. Ask below.", q: [["How do I request leave?", "Open My leave, choose the dates, and send."], ["Where is my payslip?", "Open Payslips and pick the month. You only see your own."]] }
-    },
-    ar: {
-      super: { label: "مدير النظام", n: ["الشركات", "الفوترة", "سجل التدقيق", "الإعدادات"], k: [["128", "شركة"], ["9,420", "مستخدم نشط"], ["99.9%", "وقت التشغيل"]], b: [40, 55, 48, 70, 62, 80, 92], hello: "مساعد ProTrack، عرض مدير النظام. اسأل من الأسفل.", q: [["كيف أضيف شركة؟", "افتح الشركات، اختر شركة جديدة، حدّد الخطة، ثم سمِّ أول مدير للشركة."], ["من غيّر التسعير؟", "سجل التدقيق يحفظ الشخص والوقت والقيمة السابقة."]] },
-      tenant: { label: "مدير الشركة", n: ["الموظفون", "المرتبات", "الإجازات", "التقارير"], k: [["214", "موظف"], ["9", "في إجازة اليوم"], ["جاهز", "المرتبات"]], b: [60, 52, 66, 58, 74, 70, 85], hello: "مساعد ProTrack، عرض مدير الشركة. اسأل من الأسفل.", q: [["كيف أشغّل المرتبات؟", "افتح المرتبات، راجع الحضور والإجازات، ثم اعتمد. قسائم الراتب تخرج بعد التأكيد."], ["أين أوافق على الإجازة؟", "افتح الإجازات، اختر الطلب، ثم وافق عليه."]] },
-      manager: { label: "مدير الفريق", n: ["الفريق", "المهام", "الموافقات"], k: [["12", "أفراد الفريق"], ["37", "مهمة مفتوحة"], ["4", "موافقات معلّقة"]], b: [30, 45, 38, 60, 52, 48, 64], hello: "مساعد ProTrack، عرض مدير الفريق. اسأل من الأسفل.", q: [["كيف أُسند مهمة؟", "افتح المهام، أنشئ واحدة، واختر الشخص وتاريخ الاستحقاق."], ["هل أرى حضور الفريق؟", "الفريق يعرض حضور من يتبعونك، ولا شيء خارج هذا الفريق."]] },
-      employee: { label: "موظف", n: ["مهامي", "الحضور", "إجازتي", "قسائم الراتب"], k: [["6", "مهامي"], ["14", "رصيد الإجازة"], ["32", "ساعات هذا الأسبوع"]], b: [70, 80, 65, 85, 75, 20, 10], hello: "مساعد ProTrack، عرض الموظف. اسأل من الأسفل.", q: [["كيف أطلب إجازة؟", "افتح إجازتي، اختر التواريخ، ثم أرسل."], ["أين قسيمة راتبي؟", "افتح قسائم الراتب واختر الشهر. ترى قسيمتك أنت فقط."]] }
-    }
-  };
-
   function has(el, key) { return el.dataset.tags.split(/\s+/).indexOf(key) !== -1; }
   function apply(key) {
     lensKey = key || lensKey;
@@ -733,43 +714,6 @@ html[dir="rtl"] a[href^="mailto"] {
       card.classList.toggle("dim", !has(card, lensKey));
       projects.appendChild(card);
     });
-  }
-
-  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
-  function say(who, text, typed) {
-    var log = document.getElementById("ap-log"), b = el("div", "ap-m" + who);
-    log.appendChild(b);
-    if (typed && !rm) { var i = 0; (function step() { b.textContent = text.slice(0, ++i); log.scrollTop = log.scrollHeight; if (i < text.length) setTimeout(step, 12); })(); }
-    else { b.textContent = text; log.scrollTop = log.scrollHeight; }
-  }
-  function show(role) {
-    roleKey = role;
-    var pack = ROLES[lang];
-    var d = pack[role];
-    var host = document.getElementById("roles");
-    var same = host.getAttribute("data-lang") === lang && host.children.length === Object.keys(pack).length;
-    if (!same) {
-      host.innerHTML = "";
-      host.setAttribute("data-lang", lang);
-      Object.keys(pack).forEach(function (id) {
-        var b = el("button", "", pack[id].label);
-        b.type = "button";
-        b.dataset.role = id;
-        b.addEventListener("click", function () { show(id); });
-        host.appendChild(b);
-      });
-    }
-    Array.prototype.forEach.call(host.children, function (b) { b.setAttribute("aria-pressed", b.dataset.role === role ? "true" : "false"); });
-    var nav = document.getElementById("ap-nav"); nav.innerHTML = "";
-    d.n.forEach(function (name, i) { nav.appendChild(el("div", "ap-i" + (i ? "" : " on"), name)); });
-    var k = document.getElementById("ap-k"); k.innerHTML = "";
-    d.k.forEach(function (pair) { var c = el("div", "ap-kc"); c.append(el("b", "", pair[0]), el("span", "", pair[1])); k.appendChild(c); });
-    var chart = document.getElementById("ap-c"); chart.innerHTML = "";
-    d.b.forEach(function (v) { var col = el("i"); chart.appendChild(col); requestAnimationFrame(function () { col.style.height = v + "%"; }); });
-    document.getElementById("ap-log").innerHTML = "";
-    say("a", d.hello);
-    var q = document.getElementById("ap-q"); q.innerHTML = "";
-    d.q.forEach(function (item) { var b = el("button", "ap-b", item[0]); b.type = "button"; b.addEventListener("click", function () { say("u", item[0]); say("a", item[1], true); }); q.appendChild(b); });
   }
 
   function splitLine() {
@@ -864,7 +808,6 @@ html[dir="rtl"] a[href^="mailto"] {
     document.querySelector(".langs").setAttribute("aria-label", lang === "ar" ? "اللغة" : "Language");
     document.querySelector(".top nav").setAttribute("aria-label", lang === "ar" ? "أقسام الصفحة" : "Sections");
     document.querySelector(".lens").setAttribute("aria-label", lang === "ar" ? "طريقة قراءة الأعمال" : "Choose how to read the work");
-    document.getElementById("roles").setAttribute("aria-label", lang === "ar" ? "اختر دور المستخدم" : "Choose a user role");
     pal.querySelector(".bx").setAttribute("aria-label", lang === "ar" ? "لوحة الأوامر" : "Command palette");
     pi.placeholder = lang === "ar" ? "انتقل، غيّر العدسة، أو اكتب…" : "Jump, switch lens, write…";
     pi.setAttribute("aria-label", lang === "ar" ? "بحث" : "Search");
@@ -876,7 +819,6 @@ html[dir="rtl"] a[href^="mailto"] {
     try { localStorage.setItem("mahmoud-lang", lang); } catch (e) {}
     paint();
     apply(lensKey);
-    show(roleKey);
     actions = buildActions();
     if (booted && pal.classList.contains("open")) { sel = 0; draw(); }
     booted = true;
@@ -888,7 +830,7 @@ html[dir="rtl"] a[href^="mailto"] {
     var ar = lang === "ar";
     return [
       [ar ? "إلى الأعمال" : "Go to work", ar ? "انتقال" : "Jump", go("#work")],
-      [ar ? "إلى التجربة" : "Go to practice", ar ? "انتقال" : "Jump", go("#practice")],
+      [ar ? "إلى التخرج" : "Go to the thesis", ar ? "انتقال" : "Jump", go("#thesis")],
       [ar ? "إلى المهارات" : "Go to skills", ar ? "انتقال" : "Jump", go("#skills")],
       [ar ? "إلى المسيرة" : "Go to career", ar ? "انتقال" : "Jump", go("#career")],
       [ar ? "إلى التواصل" : "Go to contact", ar ? "انتقال" : "Jump", go("#contact")],
@@ -906,8 +848,8 @@ html[dir="rtl"] a[href^="mailto"] {
   bind(".skip", "انتقل إلى الأعمال");
   bind(".brand, .who b", "محمود أحمد");
   bind(".who span", "القاهرة، مصر");
-  bind(".top nav a", ["النطاق", "الأعمال", "التجربة", "المهارات", "المسيرة", "تواصل"]);
-  bind(".kick", ["القاهرة · عن بُعد · متاح", "نبذة", "النطاق", "أعمال مختارة", "تجربة", "المهارات", "المسيرة", "التعليم", "الشهادات", "تواصل"]);
+  bind(".top nav a", ["النطاق", "الأعمال", "التخرج", "المهارات", "المسيرة", "تواصل"]);
+  bind(".kick", ["القاهرة · عن بُعد · متاح", "نبذة", "النطاق", "أعمال مختارة", "التخرج", "المهارات", "المسيرة", "التعليم", "الشهادات", "تواصل"]);
   bind("#line", "المنتج يختار التقنية.");
   bind(".role", "مطور واجهات");
   bind(".lead", "مطور واجهات بخبرة 3 سنوات في Angular و TypeScript، يبني تطبيقات ويب قابلة للتوسع ومنصات SaaS للشركات. الفرونت إند لـ <strong>ProTrack</strong> و <strong>MAF Admin Dashboard</strong>. والباك إند بـ Node.js و Express و MongoDB في <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong>.", true);
@@ -955,10 +897,17 @@ html[dir="rtl"] a[href^="mailto"] {
   document.querySelectorAll(".project iframe").forEach(function (frame) {
     frame.setAttribute("data-en", frame.getAttribute("title"));
   });
-  bind("#practice h2", "مقطع من سلوك ProTrack.");
-  bind("#practice > .sub", "غيّر الدور. تتغير معه القائمة والأرقام والمساعد. البيانات هنا للتجربة، والنسخة العاملة تُبث من Grok داخل ProTrack.");
-  bind(".slice-top span", "الدور يغيّر المنتج");
-  bind(".ap-h", "المساعد");
+  bind("#thesis h2", "سكان للجلد، من الصورة إلى الدكتور.");
+  bind("#thesis > .sub", "تصنيف سرطان الجلد بالتعلم الآلي. بكالوريوس علوم الحاسب، معهد العبور، 2022–2023.");
+  bind(".mark", ["قائد الفريق", "امتياز"]);
+  bind(".thesis-story", "قدت فريق CS-07. المريض يصوّر الشامة. تطبيق الأندرويد، المكتوب بـ Java، يرسل الصورة إلى واجهة Django REST. شبكة Keras تقارنها بصور مصنّفة حميدة وخبيثة وترجّع الفئة. لو النتيجة خبيثة، التطبيق يرشّح دكتورًا قريبًا من المكان، بالسعر والمواعيد. لو مش قادر يروح، يحجز مكالمة فيديو ويدفع بفودافون كاش أو إنستا باي أو أي وسيلة تانية. وفي التطبيق حسابات، وتاريخ للشامة، وشات، ومقالات، وإرشادات تغذية.");
+  bind(".shotcap", ["البداية", "الفحص", "النتيجة", "الأطباء", "الحجز", "الاستشارة", "البيانات"]);
+  bind(".tstep h3", ["النموذج", "المسار", "الفريق اللي قدته"]);
+  bind(".tstep p", [
+    "الصور بتتقسم على 255 عشان تبقى بين 0 و 1، وبعدين بتتزوّد بقلب أفقي ورأسي، وزووم، وتباين، ودوران. طبقات التفافية وتجميع، وبعدها طبقة كثيفة من 128 وحدة، والخرج sigmoid. حوالي <bdi>2.1 مليون</bdi> معامل، تدريب <bdi>100</bdi> دورة بـ Adam و binary cross-entropy. نتيجة الاختبار <bdi>84% accuracy · 83% precision · 82% recall</bdi>، على <bdi>2,637</bdi> صورة تدريب و <bdi>660</bdi> صورة اختبار، وفئتان.",
+    "الفحص، ثم دكتور قريب، ثم استشارة لو السفر مش متاح. بطاقة الدكتور فيها التخصص والمدينة والمواعيد والتقييم والسعر. الحجز يختار اليوم والساعة. المكالمة داخل التطبيق، والدفع بفودافون كاش أو إنستا باي أو أي وسيلة تانية.",
+    "إسلام محمد ومحمد حسن، بإشراف د. مجدي عبد الغني، وم. أسماء رزق، وم. كريم أبو العزم. أنا كنت قائد الفريق. درجة المشروع امتياز."
+  ], true);
   bind("#skills h2", "ما أعمل به.");
   bind("#skills > .sub", "إذا احتاج الدور أداة ليست في هذه القائمة، فهذه أول مهمة، وليست سببًا للانتظار.");
   bind("#skills .skill h3", ["الواجهات", "الذكاء داخل المنتج", "ربط الـ API", "المعمارية", "أنظمة الشركات", "التجارة", "الأدوات", "اللغات"]);
@@ -1067,6 +1016,7 @@ html[dir="rtl"] a[href^="mailto"] {
   addEventListener("scroll", function () {
     var max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
+    document.querySelector(".top").classList.toggle("stuck", scrollY > 8);
     var current = -1;
     links.forEach(function (a, i) { var s = document.querySelector(a.getAttribute("href")); if (s && s.getBoundingClientRect().top < innerHeight * 0.35) current = i; });
     links.forEach(function (a, i) { a.classList.toggle("on", i === current); });
