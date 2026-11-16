@@ -230,6 +230,8 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .chips svg { width: 14px; height: 14px; }
 .story { margin-top: 12px; color: #3f3c36; max-width: 75ch; }
 .outcome { margin: 10px 0 0; max-width: 75ch; font-weight: 700; border-inline-start: 4px solid var(--y); padding-inline-start: 12px; }
+.demo { margin: 12px 0 0; font-weight: 800; }
+.demo bdi { unicode-bidi: isolate; direction: ltr; display: inline-block; margin-inline-start: 6px; background: var(--y); color: #111; border: 1.5px solid #111; box-shadow: 2px 2px 0 #111; padding: 2px 8px; font-weight: 700; }
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .marks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .mark { background: var(--y); color: #111; border: 1.5px solid #111; box-shadow: 3px 3px 0 #111; padding: 5px 10px; font-weight: 800; font-size: 13px; }
@@ -238,6 +240,10 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .phones figure { flex: 0 0 196px; margin: 0; scroll-snap-align: start; }
 .phones img { width: 100%; height: 400px; object-fit: cover; object-position: top center; display: block; background: #fff; border: 2px solid #111; border-radius: 26px; box-shadow: 8px 8px 0 var(--y); }
 .phones figcaption { margin-top: 8px; font-size: 13px; font-weight: 700; }
+.stills { display: flex; gap: 12px; overflow-x: auto; margin-top: 14px; padding-bottom: 8px; }
+.stills figure { flex: 0 0 280px; margin: 0; }
+.stills img { width: 100%; height: 180px; object-fit: cover; object-position: top center; display: block; background: #fff; border: 2px solid #111; border-radius: 14px; box-shadow: 6px 6px 0 var(--y); }
+.stills figcaption { margin-top: 8px; font-size: 13px; font-weight: 700; }
 .tsteps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
 .tstep { border: 1.5px solid #3a3a3a; border-radius: 16px; padding: 16px; }
 .tstep:first-child { background: var(--y); color: #111; border-color: #111; box-shadow: 6px 6px 0 #111; }
@@ -439,8 +445,8 @@ html[dir="rtl"] a[href^="mailto"] {
 
   <section id="work">
     <p class="kicker"><span class="kick">Selected work</span></p>
-    <h2>Five products, live in the page.</h2>
-    <p class="sub">Each frame is the real deployment. Use it here, or open it on its own. Work outside the selected lens stays, because range is the point.</p>
+    <h2>Eight products. Seven of them live in the page.</h2>
+    <p class="sub">Each live frame is the real deployment. ELdeebCart and Yummy are live. Exclusive is the ITI store, shown from the running app. Work outside the selected lens stays, because range is the point.</p>
     <div class="projects" id="projects">
       <article class="project" data-i="1" data-tags="frontend fullstack">
         <div class="project-top">
@@ -522,6 +528,73 @@ html[dir="rtl"] a[href^="mailto"] {
         <p class="outcome">The catalog had to take a real payment. I built filters, a strap configurator, and card checkout with a 3D Secure OTP check on the API.</p>
         <div class="links"><a class="btn primary" href="https://alpine-ui-beta.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Apin-" target="_blank" rel="noopener">Source</a></div>
       </article>
+      <article class="project" data-i="6" data-tags="fullstack frontend backend">
+        <div class="project-top">
+          <div class="idx">06</div>
+          <div><h3>Exclusive</h3><p class="kind">MEAN store from ITI</p><p class="also">Also in range</p></div>
+          <div class="metric"><b>Stripe</b><span>card checkout</span></div>
+        </div>
+        <p class="blurb">Search, filters, a cart, JWT accounts, and a real card payment.</p>
+        <div class="browser">
+          <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">localhost · ITI</span><a href="https://github.com/MahmoudELdeba34/Full-Stack--Ecommerce-Mean-" target="_blank" rel="noopener">Open</a></div>
+          <div class="viewport"><img class="poster" src="images/exclusive-home.png" alt="Exclusive store home"></div>
+        </div>
+        <div class="stills">
+          <figure><img src="images/exclusive-home.png" alt="Exclusive home with electronics and grocery"><figcaption class="excap">Home</figcaption></figure>
+          <figure><img src="images/exclusive-catalog.png" alt="Electronics catalog with filters and prices"><figcaption class="excap">Catalog</figcaption></figure>
+          <figure><img src="images/exclusive-login.png" alt="Exclusive login"><figcaption class="excap">Log in</figcaption></figure>
+          <figure><img src="images/exclusive-signup.png" alt="Exclusive sign up"><figcaption class="excap">Sign up</figcaption></figure>
+        </div>
+        <ul class="chips"><li>Angular</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>JWT</li><li>Stripe</li></ul>
+        <p class="story">Electronics, grocery, and pets. Live search, category and price filters, product pages, a cart, JWT registration and login, and Stripe checkout. REST for products, users, and orders.</p>
+        <p class="outcome">An ITI MEAN project, built with the team. Angular on the screen, Express and MongoDB behind it, and a real payment step.</p>
+        <div class="links"><a class="btn" href="https://github.com/MahmoudELdeba34/Full-Stack--Ecommerce-Mean-" target="_blank" rel="noopener">Source</a></div>
+      </article>
+      <article class="project" data-i="7" data-tags="frontend">
+        <div class="project-top">
+          <div class="idx">07</div>
+          <div><h3>Yummy</h3><p class="kind">Meal explorer</p><p class="also">Also in range</p></div>
+          <div class="metric"><b>20</b><span>meals in a view</span></div>
+        </div>
+        <p class="blurb">Search by name or first letter, then browse by category, area, and ingredient.</p>
+        <div class="browser">
+          <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">mahmoudeldeba34.github.io/Yummy-website</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://mahmoudeldeba34.github.io/Yummy-website/" target="_blank" rel="noopener">Open</a></div>
+          <div class="viewport"><img class="poster" src="images/yummy-home.png" alt="Yummy meal grid"><iframe src="https://mahmoudeldeba34.github.io/Yummy-website/" title="Yummy live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        </div>
+        <div class="stills">
+          <figure><img src="images/yummy-home.png" alt="Yummy meals"><figcaption class="ycap">Meals</figcaption></figure>
+          <figure><img src="images/yummy-search.png" alt="Search meals by name or first letter"><figcaption class="ycap">Search</figcaption></figure>
+          <figure><img src="images/yummy-area.png" alt="Meals by country"><figcaption class="ycap">Area</figcaption></figure>
+          <figure><img src="images/yummy-meal.png" alt="Cabbage soup recipe, area, and tags"><figcaption class="ycap">Details</figcaption></figure>
+        </div>
+        <ul class="chips"><li>JavaScript</li><li>Bootstrap</li><li>Fetch API</li><li>TheMealDB</li></ul>
+        <p class="story">TheMealDB. Up to 20 meals for the category, the area, or the ingredient. A meal opens to the photo, the instructions, the area, the category, the recipes, the tags, and links to the source and YouTube. The contact form stays closed until every field matches its regex.</p>
+        <p class="outcome">The menu had to be searchable in more than one way. I built name and letter search, category, area, and ingredient views, and a meal page with the recipe and the video.</p>
+        <div class="links"><a class="btn primary" href="https://mahmoudeldeba34.github.io/Yummy-website/" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Yummy-website" target="_blank" rel="noopener">Source</a></div>
+      </article>
+      <article class="project" data-i="8" data-tags="frontend">
+        <div class="project-top">
+          <div class="idx">08</div>
+          <div><h3>ELdeebCart</h3><p class="kind">Angular storefront</p><p class="also">Also in range</p></div>
+          <div class="metric"><b>10</b><span>categories</span></div>
+        </div>
+        <p class="blurb">Home, product search, a cart with quantity, and checkout.</p>
+        <div class="browser">
+          <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">master-e-commerce-eight.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://master-e-commerce-eight.vercel.app/" target="_blank" rel="noopener">Open</a></div>
+          <div class="viewport"><img class="poster" src="images/eldeeb-home.png" alt="ELdeebCart home"><iframe src="https://master-e-commerce-eight.vercel.app/" title="ELdeebCart live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        </div>
+        <div class="stills">
+          <figure><img src="images/eldeeb-home.png" alt="ELdeebCart home categories"><figcaption class="ecap">Home</figcaption></figure>
+          <figure><img src="images/eldeeb-products.png" alt="Product grid with search"><figcaption class="ecap">Products</figcaption></figure>
+          <figure><img src="images/eldeeb-details.png" alt="Product details and add to cart"><figcaption class="ecap">Details</figcaption></figure>
+          <figure><img src="images/eldeeb-cart.png" alt="Cart with quantity and total"><figcaption class="ecap">Cart</figcaption></figure>
+        </div>
+        <ul class="chips"><li>Angular</li><li>TypeScript</li><li>Tailwind</li><li>Sass</li></ul>
+        <p class="story">Fashion, mobiles, electronics, books, beauty, toys, and a supermarket. Search, a product page, a wishlist, and a cart that updates the quantity and the total. Checkout takes the address, the phone, and the city, then offers pay on shipping or pay online.</p>
+        <p class="outcome">The catalog had to feel like a store, not a list. I built the home, the search, the product page, the wishlist, and a cart that keeps the quantity and the total with the account.</p>
+        <p class="demo">Try it <bdi>mahmoudeldeba9@gmail.com</bdi><bdi>123123</bdi></p>
+        <div class="links"><a class="btn primary" href="https://master-e-commerce-eight.vercel.app/" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Master-E-commerce" target="_blank" rel="noopener">Source</a></div>
+      </article>
     </div>
   </section>
 
@@ -556,7 +629,7 @@ html[dir="rtl"] a[href^="mailto"] {
     <details class="skill"><summary><h3>API integration</h3></summary><p>REST, SignalR and Socket.io, JWT interceptors and route guards, Swagger and Postman. Working knowledge of ASP.NET Core Web API, Node.js, and SQL Server.</p></details>
     <details class="skill"><summary><h3>Architecture</h3></summary><p>Component-based architecture, SOLID, Clean Architecture, reusable UI systems, lazy loading, performance work that shows up in the numbers.</p></details>
     <details class="skill"><summary><h3>Enterprise</h3></summary><p>Multi-tenant SaaS, role-based access control, operational dashboards. CRM BI on Microsoft 365 through ITI.</p></details>
-    <details class="skill"><summary><h3>Commerce</h3></summary><p>Shopify, plus a custom storefront in Alpine with server-side validation.</p></details>
+    <details class="skill"><summary><h3>Commerce</h3></summary><p>Shopify, a custom storefront in Alpine with server-side validation, Exclusive, the ITI MEAN store with Stripe, and ELdeebCart, an Angular and Tailwind catalog with a cart.</p></details>
     <details class="skill"><summary><h3>Tools</h3></summary><p>Git and GitHub, GitHub Actions, Azure DevOps basics, Vercel and Netlify.</p></details>
     <details class="skill"><summary><h3>Languages</h3></summary><p>Arabic, native. English, fluent.</p></details>
   </section>
@@ -863,38 +936,51 @@ html[dir="rtl"] a[href^="mailto"] {
     "بسلّم الشاشة والنظام اللي وراها. Angular و React للواجهة. ASP.NET Core في <strong>ProTrack</strong> و <strong>MAF Admin</strong>. و Node.js و Express و MongoDB في <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong>، ومنها المصادقة و REST والذكاء داخل المنتج. CRM BI على Microsoft 365. التقنية تتبع المنتج، والأداة الجديدة أول مهمة مش سبب للتأجيل.",
     "العربية لغتي الأم، والإنجليزية بمستوى مهني. اتجاه RTL مطلب أصممه من البداية، لا تعديل يُلحق في النهاية. مصري. معفى من التجنيد."
   ], true);
-  bind("#work h2", "خمسة منتجات، مباشرة داخل الصفحة.");
-  bind("#work > .sub", "كل إطار هو النسخة المنشورة نفسها. جرّبها هنا، أو افتحها وحدها. ما يقع خارج العدسة المختارة يبقى ظاهرًا، لأن الاتساع هو المقصود.");
-  bind(".project .kind", ["موارد بشرية ومرتبات ومشاريع، لعدة شركات", "نظام تشغيل لعيادة متعددة الفروع", "منصة تعلم بالذكاء الاصطناعي للمبرمجين", "تشغيل سوق سيارات", "متجر ساعات فاخرة"]);
-  bind(".project .metric span", ["أدوار بصلاحيات", "واجهة REST", "مبارزة مباشرة", "وحدات إدارة", "دفع بالبطاقة و OTP"]);
+  bind("#work h2", "ثمانية منتجات. سبعة منها مباشرة داخل الصفحة.");
+  bind("#work > .sub", "كل إطار منشور هو النسخة الحية. ELdeebCart و Yummy منشوران. Exclusive متجر ITI، ومعروض من التطبيق وهو شغال. ما يقع خارج العدسة المختارة يبقى ظاهرًا، لأن الاتساع هو المقصود.");
+  bind(".project .kind", ["موارد بشرية ومرتبات ومشاريع، لعدة شركات", "نظام تشغيل لعيادة متعددة الفروع", "منصة تعلم بالذكاء الاصطناعي للمبرمجين", "تشغيل سوق سيارات", "متجر ساعات فاخرة", "متجر MEAN من ITI", "مستكشف وجبات", "واجهة متجر بـ Angular"]);
+  bind(".project .metric span", ["أدوار بصلاحيات", "واجهة REST", "مبارزة مباشرة", "وحدات إدارة", "دفع بالبطاقة و OTP", "دفع بالبطاقة", "وجبة في العرض", "فئات"]);
   bind(".project .blurb", [
     "المالك الوحيد للواجهة وقائد المشروع. المساعد يعيش داخل المنتج.",
     "سجل طبي، ومواعيد، وفوترة، وموارد بشرية، و CRM، وبوابة للمريض. الذكاء الاصطناعي داخل سير العمل الطبي.",
     "معلّم يقرأ كود الطالب، مع مبارزات ودردشة في الوقت الحقيقي.",
     "مبيعات وقطع غيار وحجز صيانة، مع إشعارات مباشرة.",
-    "فلاتر، وتخصيص للسوار، وخطوة دفع يتحقق منها السيرفر."
+    "فلاتر، وتخصيص للسوار، وخطوة دفع يتحقق منها السيرفر.",
+    "بحث، وفلاتر، وسلة، وحسابات JWT، ودفع حقيقي بالبطاقة.",
+    "بحث بالاسم أو أول حرف، ثم تصفح بالفئة والدولة والمكوّن.",
+    "الرئيسية، وبحث المنتجات، وسلة بالكمية، وإتمام الطلب."
   ]);
   bind(".project .story", [
     "حضور وإجازات ومرتبات ومهام، بواجهة مختلفة لكل من Super Admin و Tenant Admin و Manager و Employee. المساعد يبث إجابات حسب السياق في الموارد البشرية والمرتبات. شاركت في تصميم عقود REST مع فريق الباك إند.",
     "أربع عشرة وحدة و 65 اختبارًا آليًا. توكنات الدخول والتجديد في JWT تتبدل. ثلاثة عشر دور صلاحيات، منها عرض الطبيب 360° عبر 10 سجلات مرتبطة.",
     "المعلّم، على Groq مع RAG، يوجّه الطالب إلى الإصلاح من غير أن يسلّمه الإجابة. Socket.io يشغّل المبارزات ودردشة مباشرة بملاحظات صوتية. الامتحانات فيها تتبّع لمحاولات الغش. واجهة عربية باتجاه RTL ووضع داكن.",
     "قائد الفريق. Clean Architecture، واعتراضات JWT، وحماية المسارات، و SSR، وإشعارات SignalR. مستخدمون ومنتجات وطلبات ومستحقات ومكافآت وإعلانات، على الكمبيوتر والتابلت والموبايل.",
-    "فلاتر الماركة والموديل، وتخصيص للسوار، والدفع عند الاستلام، والدفع بالبطاقة بخطوة 3D Secure و OTP. التحقق من الهاتف والعنوان مفروض على الـ API."
+    "فلاتر الماركة والموديل، وتخصيص للسوار، والدفع عند الاستلام، والدفع بالبطاقة بخطوة 3D Secure و OTP. التحقق من الهاتف والعنوان مفروض على الـ API.",
+    "إلكترونيات وبقالة وحيوانات أليفة. بحث مباشر، وفلاتر للفئة والسعر، وصفحة للمنتج، وسلة، وتسجيل ودخول بـ JWT، ودفع Stripe. واجهات REST للمنتجات والمستخدمين والطلبات.",
+    "TheMealDB. حتى 20 وجبة للفئة أو الدولة أو المكوّن. الوجبة تفتح على الصورة، وطريقة التحضير، والدولة، والفئة، والمكونات، والوسوم، وروابط المصدر ويوتيوب. نموذج التواصل يفضل مقفول لحد ما كل خانة تطابق الـ regex.",
+    "أزياء وموبايلات وإلكترونيات وكتب وتجميل ولعب وسوبرماركت. بحث، وصفحة منتج، وقائمة أمنيات، وسلة تحدّث الكمية والإجمالي. إتمام الطلب ياخد العنوان والهاتف والمدينة، ثم الدفع عند الشحن أو الدفع أونلاين."
   ]);
   bind(".project .outcome", [
     "الحضور والمرتبات والمهام كانت خطوات منفصلة. ملكت واجهة Angular والمساعد، بشاشة مختلفة لكل دور من 4 أدوار، وانخفضت فحوصات الجودة اليدوية بنحو 30%.",
     "السجلات والمواعيد والفوترة كانت متفرقة. بنيت النظام: 14 وحدة، وأكثر من 70 واجهة REST، و13 دورًا، ومنها عرض الطبيب عبر 10 سجلات مرتبطة.",
     "الطلاب احتاجوا معلّمًا لا يسلّم الإجابة. بنيت معلّم Groq، ومبارزات 1 ضد 1 مباشرة، والعربية باتجاه RTL في المنتج نفسه.",
     "المبيعات وقطع الغيار وحجز الصيانة احتاجت لوحة واحدة. قدت الواجهة: 6 وحدات وإشعارات SignalR مباشرة على الكمبيوتر والتابلت والموبايل.",
-    "الكتالوج كان لازم يستقبل دفعًا حقيقيًا. بنيت الفلاتر، وتخصيص السوار، والدفع بالبطاقة مع تحقق 3D Secure و OTP على الـ API."
+    "الكتالوج كان لازم يستقبل دفعًا حقيقيًا. بنيت الفلاتر، وتخصيص السوار، والدفع بالبطاقة مع تحقق 3D Secure و OTP على الـ API.",
+    "مشروع MEAN في ITI، مع الفريق. Angular على الشاشة، و Express و MongoDB وراها، وخطوة دفع حقيقية.",
+    "القائمة كانت محتاجة أكتر من طريقة بحث. بنيت البحث بالاسم والحرف، وعرض الفئة والدولة والمكوّن، وصفحة الوجبة بالوصفة والفيديو.",
+    "الكتالوج كان لازم يحس إنه متجر مش قائمة. بنيت الرئيسية والبحث وصفحة المنتج وقائمة الأمنيات، وسلة تحفظ الكمية والإجمالي مع الحساب."
   ]);
+  bind(".excap", ["الرئيسية", "الكتالوج", "الدخول", "إنشاء حساب"]);
+  bind(".ycap", ["الوجبات", "البحث", "الدول", "التفاصيل"]);
+  bind(".ecap", ["الرئيسية", "المنتجات", "التفاصيل", "السلة"]);
+  bind(".demo", "جرّبه <bdi>mahmoudeldeba9@gmail.com</bdi><bdi>123123</bdi>", true);
   bindSame(".also", "ضمن النطاق أيضًا");
   bindSame(".use", "جرّب التطبيق");
   bindSame(".release", "إيقاف");
   bindSame(".chrome > a", "فتح");
   bindSame(".links a.btn.primary", "الموقع");
   bindSame(".links a.btn:not(.primary)", "المصدر");
-  var frameAr = { "1": "معاينة ProTrack V2", "2": "معاينة LifeCare", "3": "معاينة Codevera", "4": "معاينة MAF Admin", "5": "معاينة Alpine" };
+  var frameAr = { "1": "معاينة ProTrack V2", "2": "معاينة LifeCare", "3": "معاينة Codevera", "4": "معاينة MAF Admin", "5": "معاينة Alpine", "7": "معاينة Yummy", "8": "معاينة ELdeebCart" };
   document.querySelectorAll(".project iframe").forEach(function (frame) {
     frame.setAttribute("data-en", frame.getAttribute("title"));
   });
@@ -918,7 +1004,7 @@ html[dir="rtl"] a[href^="mailto"] {
     "REST، و SignalR و Socket.io، واعتراضات JWT وحماية المسارات، و Swagger و Postman. معرفة عملية بـ ASP.NET Core Web API و Node.js و SQL Server.",
     "معمارية مبنية على المكونات، و SOLID، و Clean Architecture، وأنظمة واجهات قابلة لإعادة الاستخدام، والتحميل الكسول، وتحسين أداء يظهر في الأرقام.",
     "منصات SaaS متعددة المستأجرين، والتحكم بالوصول حسب الدور، ولوحات التشغيل. CRM BI على Microsoft 365 عبر ITI.",
-    "Shopify، ومتجر مخصص في Alpine مع تحقق من جهة السيرفر.",
+    "Shopify، ومتجر مخصص في Alpine مع تحقق من جهة السيرفر، و Exclusive متجر MEAN من ITI مع Stripe، و ELdeebCart كتالوج Angular و Tailwind مع سلة.",
     "Git و GitHub، و GitHub Actions، وأساسيات Azure DevOps، و Vercel و Netlify.",
     "العربية، لغة أم. الإنجليزية، بطلاقة."
   ]);
