@@ -27,6 +27,9 @@ try {
   var savedLang = localStorage.getItem("mahmoud-lang");
   if (savedLang !== "ar" && savedLang !== "en" && (navigator.language || "").toLowerCase().indexOf("ar") === 0) savedLang = "ar";
   if (savedLang === "ar") { document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; }
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  scrollTo(0, 0);
 } catch (e) {}
 </script>
 <style>
@@ -41,14 +44,13 @@ try {
   --cream: #f6f3ea;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
   font: 400 17px/1.55 "Instrument Sans", "Segoe UI", sans-serif;
   text-rendering: optimizeLegibility;
-  overflow-x: clip;
 }
 body.cursor { cursor: none; }
 h1, h2, h3, .brand, .fact b, .metric b, .idx { font-family: "Bricolage Grotesque", "Instrument Sans", sans-serif; letter-spacing: -0.035em; }
@@ -116,11 +118,10 @@ html[dir="rtl"] .seal-ar { display: block; width: 62px; }
   height: 8px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 7C28 2 48 11 86 5s62-4 112 3' fill='none' stroke='%23e2ff3f' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M6 8c34 4 62-5 108 1' fill='none' stroke='%23111' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
-.top nav { display: flex; gap: 8px; align-items: center; }
-.top nav a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: 14.5px; padding: 5px 10px; border-radius: 999px; }
-.top nav a:hover { color: var(--ink); }
-.top nav a.on { color: #111; background: var(--y); }
-.top nav a { transition: background .2s ease, color .2s ease, transform .2s ease; }
+.dock { display: flex; gap: 8px; align-items: center; }
+.dock a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: 14.5px; padding: 5px 10px; border-radius: 999px; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.dock a:hover { color: var(--ink); }
+.dock a.on { color: #111; background: var(--y); }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
 .hero {
   position: relative;
@@ -339,15 +340,16 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
   body { padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
   .top { flex-wrap: nowrap; padding: 10px 16px; padding-top: calc(10px + env(safe-area-inset-top)); background: var(--bg); backdrop-filter: none; }
   .wrap { padding: 0 16px; }
-  .top nav {
-    position: fixed; inset: auto 0 0 0; z-index: 50;
-    display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px;
-    width: auto; overflow: visible;
+  .dock {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+    display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px;
+    width: 100%; max-width: 100%; overflow: hidden;
     background: #111; border-top: 2px solid #111;
     padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
   }
-  .top nav a { display: block; text-align: center; white-space: nowrap; color: #f4f1e8; font-size: 11px; font-weight: 700; padding: 8px 2px; border-radius: 10px; }
-  .top nav a.on { color: #111; background: var(--y); }
+  .dock a { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; text-align: center; white-space: nowrap; color: #f4f1e8; font-size: 11px; font-weight: 700; padding: 8px 2px; border-radius: 10px; }
+  .dock a.on { color: #111; background: var(--y); }
+  footer.contact { padding-bottom: calc(120px + env(safe-area-inset-bottom)); }
   .tools { margin-inline-start: auto; }
   .hero { padding-top: 20px; }
   .hero h1 { font-size: clamp(38px, 11vw, 52px); max-width: none; }
@@ -362,6 +364,7 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
   .project { padding: 16px; }
   .chrome { flex-wrap: wrap; }
   .viewport { height: 220px; }
+  section, footer.contact { scroll-margin-top: 76px; }
   section { padding-top: 56px; }
   section h2, footer.contact h2 { max-width: none; }
   .cta .btn, .reach .btn { flex: 1 1 auto; }
@@ -422,7 +425,7 @@ html[dir="rtl"] a[href^="mailto"] {
 <div id="bar" aria-hidden="true"></div>
 <header class="top">
   <a class="brand" href="#top"><svg class="seal seal-en" viewBox="0 0 70 56" aria-hidden="true"><path fill="#e2ff3f" d="M9 50 9 8h12.5L35 28.5 48.5 8H61v42H48.5V29.5L35 45.5 21.5 29.5V50Z"/><path fill="#111" d="M5 46 5 4h12.5L31 24.5 44.5 4H57v42H44.5V25.5L31 41.5 17.5 25.5V46Z"/></svg><svg class="seal seal-ar" viewBox="0 0 88 80" overflow="visible" aria-hidden="true"><text x="52" y="70" text-anchor="middle" font-family="Cairo, sans-serif" font-size="68" font-weight="800" fill="#e2ff3f">م</text><text x="40" y="56" text-anchor="middle" font-family="Cairo, sans-serif" font-size="68" font-weight="800" fill="#111">م</text></svg><span class="wm">Mahmoud Ahmed</span></a>
-  <nav aria-label="Sections">
+  <nav class="dock" aria-label="Sections">
     <a href="#range">Range</a>
     <a href="#work">Work</a>
     <a href="#thesis">Thesis</a>
@@ -933,7 +936,7 @@ html[dir="rtl"] a[href^="mailto"] {
     document.getElementById("lang-en").setAttribute("aria-pressed", lang === "en" ? "true" : "false");
     document.getElementById("lang-ar").setAttribute("aria-pressed", lang === "ar" ? "true" : "false");
     document.querySelector(".langs").setAttribute("aria-label", lang === "ar" ? "اللغة" : "Language");
-    document.querySelector(".top nav").setAttribute("aria-label", lang === "ar" ? "أقسام الصفحة" : "Sections");
+    document.querySelector(".dock").setAttribute("aria-label", lang === "ar" ? "أقسام الصفحة" : "Sections");
     document.querySelector(".lens").setAttribute("aria-label", lang === "ar" ? "طريقة قراءة الأعمال" : "Choose how to read the work");
   }
   function setLang(next) {
@@ -950,7 +953,7 @@ html[dir="rtl"] a[href^="mailto"] {
   bind(".wm, .who b", "محمود أحمد");
   bind(".reach a", ["إيميل", "موبايل", "جيت هب", "لينكدإن"]);
   bind(".who span", "القاهرة، مصر");
-  bind(".top nav a", ["النطاق", "الأعمال", "التخرج", "المهارات", "المسيرة", "تواصل"]);
+  bind(".dock a", ["النطاق", "الأعمال", "التخرج", "المهارات", "المسيرة", "تواصل"]);
   bind(".kick", ["ريموت أو أون سايت، عادي · متاح", "نبذة", "النطاق", "أعمال مختارة", "التخرج", "المهارات", "المسيرة", "التعليم", "الشهادات", "تواصل"]);
   bind("#line", "المنتج يختار التقنية.");
   bind(".role", ["مهندس برمجيات", "تطبيقات ويب"]);
@@ -1129,13 +1132,63 @@ html[dir="rtl"] a[href^="mailto"] {
   views.forEach(function (view) { if ("ResizeObserver" in window) new ResizeObserver(function () { fit(view); }).observe(view); fit(view); });
 
   var bar = document.getElementById("bar");
-  var links = Array.prototype.slice.call(document.querySelectorAll(".top nav a"));
+  var dock = document.querySelector(".dock");
+  var dockHome = dock.parentNode;
+  var dockBefore = document.querySelector(".tools");
+  function placeDock() {
+    var mobile = matchMedia("(max-width: 720px)").matches;
+    if (mobile) {
+      if (dock.parentNode !== document.body) document.body.appendChild(dock);
+      var vv = window.visualViewport;
+      var lift = 0;
+      var width = document.documentElement.clientWidth;
+      var left = -(document.documentElement.scrollLeft || 0);
+      if (vv && vv.height) {
+        var raw = innerHeight - vv.height - vv.offsetTop;
+        if (raw > 0 && raw < innerHeight * 0.45) lift = Math.round(raw);
+        left += vv.offsetLeft || 0;
+      }
+      dock.style.left = left + "px";
+      dock.style.width = width + "px";
+      dock.style.right = "auto";
+      dock.style.bottom = "0px";
+      dock.style.transform = lift ? "translateY(" + (-lift) + "px)" : "none";
+    } else {
+      dock.style.bottom = "";
+      dock.style.left = "";
+      dock.style.width = "";
+      dock.style.right = "";
+      dock.style.transform = "";
+      if (dock.parentNode !== dockHome) dockHome.insertBefore(dock, dockBefore);
+    }
+  }
+  placeDock();
+  addEventListener("resize", placeDock);
+  if (window.visualViewport) {
+    visualViewport.addEventListener("resize", placeDock);
+    visualViewport.addEventListener("scroll", placeDock);
+  }
+  var links = Array.prototype.slice.call(document.querySelectorAll(".dock a"));
+  links.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var target = document.querySelector(a.getAttribute("href"));
+      if (!target || !matchMedia("(max-width: 720px)").matches) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: rm ? "auto" : "smooth", block: "start" });
+      history.replaceState(null, "", a.getAttribute("href"));
+      a.blur();
+      placeDock();
+    });
+  });
   addEventListener("scroll", function () {
+    placeDock();
     var max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
     document.querySelector(".top").classList.toggle("stuck", scrollY > 8);
     var current = -1;
+    var atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 24;
     links.forEach(function (a, i) { var s = document.querySelector(a.getAttribute("href")); if (s && s.getBoundingClientRect().top < innerHeight * 0.35) current = i; });
+    if (atEnd) current = links.length - 1;
     links.forEach(function (a, i) { a.classList.toggle("on", i === current); });
   }, { passive: true });
 
@@ -1185,6 +1238,13 @@ html[dir="rtl"] a[href^="mailto"] {
       document.querySelectorAll(".project").forEach(function (card) { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); });
     });
   }
+
+  var userMoved = false;
+  addEventListener("pointerdown", function () { userMoved = true; }, { passive: true });
+  function openAtTop() { if (!userMoved) scrollTo(0, 0); }
+  openAtTop();
+  addEventListener("load", openAtTop);
+  addEventListener("pageshow", openAtTop);
 })();
 </script>
 </body>
