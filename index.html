@@ -343,7 +343,8 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
   .dock {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
     display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px;
-    width: 100%; max-width: 100%; overflow: hidden;
+    width: 100%; max-width: 100%; margin: 0; transform: none;
+    overflow: hidden;
     background: #111; border-top: 2px solid #111;
     padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
   }
@@ -1137,37 +1138,19 @@ html[dir="rtl"] a[href^="mailto"] {
   var dockBefore = document.querySelector(".tools");
   function placeDock() {
     var mobile = matchMedia("(max-width: 720px)").matches;
+    dock.style.left = "";
+    dock.style.right = "";
+    dock.style.bottom = "";
+    dock.style.width = "";
+    dock.style.transform = "";
     if (mobile) {
       if (dock.parentNode !== document.body) document.body.appendChild(dock);
-      var vv = window.visualViewport;
-      var lift = 0;
-      var width = document.documentElement.clientWidth;
-      var left = -(document.documentElement.scrollLeft || 0);
-      if (vv && vv.height) {
-        var raw = innerHeight - vv.height - vv.offsetTop;
-        if (raw > 0 && raw < innerHeight * 0.45) lift = Math.round(raw);
-        left += vv.offsetLeft || 0;
-      }
-      dock.style.left = left + "px";
-      dock.style.width = width + "px";
-      dock.style.right = "auto";
-      dock.style.bottom = "0px";
-      dock.style.transform = lift ? "translateY(" + (-lift) + "px)" : "none";
-    } else {
-      dock.style.bottom = "";
-      dock.style.left = "";
-      dock.style.width = "";
-      dock.style.right = "";
-      dock.style.transform = "";
-      if (dock.parentNode !== dockHome) dockHome.insertBefore(dock, dockBefore);
+    } else if (dock.parentNode !== dockHome) {
+      dockHome.insertBefore(dock, dockBefore);
     }
   }
   placeDock();
   addEventListener("resize", placeDock);
-  if (window.visualViewport) {
-    visualViewport.addEventListener("resize", placeDock);
-    visualViewport.addEventListener("scroll", placeDock);
-  }
   var links = Array.prototype.slice.call(document.querySelectorAll(".dock a"));
   links.forEach(function (a) {
     a.addEventListener("click", function (e) {
@@ -1177,11 +1160,9 @@ html[dir="rtl"] a[href^="mailto"] {
       target.scrollIntoView({ behavior: rm ? "auto" : "smooth", block: "start" });
       history.replaceState(null, "", a.getAttribute("href"));
       a.blur();
-      placeDock();
     });
   });
   addEventListener("scroll", function () {
-    placeDock();
     var max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
     document.querySelector(".top").classList.toggle("stuck", scrollY > 8);
