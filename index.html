@@ -21,7 +21,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111111'/%3E%3Cpath fill='%23e2ff3f' d='M6.5 25V8h4.8l4.7 7.6L20.7 8H25.5v17h-4.1V14.4L17 21.2h-2L10.6 14.4V25H6.5z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,520;12..96,700;12..96,800&family=Cairo:wght@500;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Bricolage+Grotesque:opsz,wght@12..96,520;12..96,700;12..96,800&family=Cairo:wght@500;700;800&family=Fraunces:ital,opsz,wght@1,9..144,620&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <script>
 try {
   var savedLang = localStorage.getItem("mahmoud-lang");
@@ -89,21 +89,29 @@ button { font: inherit; color: inherit; }
   transition: background .2s ease, border-color .2s ease;
 }
 .top.stuck { border-bottom-color: #111; background: color-mix(in srgb, var(--bg) 94%, #fff); }
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #111; }
-.brand::before {
-  content: "MA";
-  display: grid; place-items: center;
-  width: 36px; height: 36px; flex: none;
-  background: #111; color: var(--y);
-  border-radius: 10px;
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-weight: 800; font-size: 13px; letter-spacing: -0.06em;
-  box-shadow: 3px 3px 0 var(--y);
-}
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #111; }
+.seal { width: 54px; height: 44px; flex: none; display: block; overflow: visible; }
 .wm {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-weight: 800; font-size: 15px; line-height: 1;
-  letter-spacing: .12em; text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  font-family: "Fraunces", "Times New Roman", serif;
+  font-optical-sizing: auto;
+  font-weight: 620;
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: none;
+  color: #111;
+  padding-bottom: 7px;
+}
+.wm::after {
+  content: "";
+  position: absolute;
+  inset-inline: -1% 10%;
+  bottom: 0;
+  height: 8px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 7C28 2 48 11 86 5s62-4 112 3' fill='none' stroke='%23e2ff3f' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M6 8c34 4 62-5 108 1' fill='none' stroke='%23111' stroke-width='1.15' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 .top nav { display: flex; gap: 8px; align-items: center; }
 .top nav a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: 14.5px; padding: 5px 10px; border-radius: 999px; }
@@ -372,7 +380,7 @@ html[dir="rtl"] .brand, html[dir="rtl"] .wm, html[dir="rtl"] .who b, html[dir="r
   font-family: "Cairo", "Instrument Sans", sans-serif;
   letter-spacing: 0;
 }
-html[dir="rtl"] .wm { letter-spacing: 0; text-transform: none; font-size: 18px; }
+html[dir="rtl"] .wm { font-family: "Aref Ruqaa", "Cairo", serif; font-style: normal; font-weight: 700; letter-spacing: 0; text-transform: none; font-size: 28px; padding-bottom: 4px; }
 html[dir="rtl"] .kicker { letter-spacing: .04em; }
 html[dir="rtl"] .role { letter-spacing: 0; text-transform: none; font-size: 20px; }
 html[dir="rtl"] .hero h1 { line-height: 1.2; max-width: none; }
@@ -398,6 +406,9 @@ html[dir="rtl"] a[href^="mailto"] {
 @media (max-width: 720px) {
   html[dir="rtl"] section h2,
   html[dir="rtl"] footer.contact h2 { max-width: none; }
+  .seal { width: 44px; height: 36px; }
+  .wm { font-size: 20px; }
+  html[dir="rtl"] .wm { font-size: 22px; }
 }
 </style>
 </head>
@@ -406,7 +417,7 @@ html[dir="rtl"] a[href^="mailto"] {
 <div id="pre" aria-hidden="true"><span id="pre-t"></span></div>
 <div id="bar" aria-hidden="true"></div>
 <header class="top">
-  <a class="brand" href="#top"><span class="wm">Mahmoud Ahmed</span></a>
+  <a class="brand" href="#top"><svg class="seal" viewBox="0 0 70 56" aria-hidden="true"><path fill="#e2ff3f" d="M9 50 9 8h12.5L35 28.5 48.5 8H61v42H48.5V29.5L35 45.5 21.5 29.5V50Z"/><path fill="#111" d="M5 46 5 4h12.5L31 24.5 44.5 4H57v42H44.5V25.5L31 41.5 17.5 25.5V46Z"/></svg><span class="wm">Mahmoud Ahmed</span></a>
   <nav aria-label="Sections">
     <a href="#range">Range</a>
     <a href="#work">Work</a>
