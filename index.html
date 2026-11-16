@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Mahmoud Ahmed — software engineer for web applications in Cairo. Angular, React, ASP.NET Core, and Node.js. Enterprise products, and whatever stack the work needs next.">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#f4f1e8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mahmoud">
 <meta property="og:title" content="Mahmoud Ahmed — Software Engineer, Web Applications">
 <meta property="og:description" content="Enterprise products, multi-tenant SaaS, and the stack the work needs. Cairo.">
 <meta property="og:type" content="website">
@@ -85,16 +89,27 @@ button { font: inherit; color: inherit; }
   transition: background .2s ease, border-color .2s ease;
 }
 .top.stuck { border-bottom-color: #111; background: color-mix(in srgb, var(--bg) 94%, #fff); }
-.brand { font-weight: 800; font-size: 18px; text-decoration: none; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: #111; }
+.brand::before {
+  content: "MA";
+  display: grid; place-items: center;
+  width: 36px; height: 36px; flex: none;
+  background: #111; color: var(--y);
+  border-radius: 10px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800; font-size: 13px; letter-spacing: -0.06em;
+  box-shadow: 3px 3px 0 var(--y);
+}
+.wm {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800; font-size: 15px; line-height: 1;
+  letter-spacing: .12em; text-transform: uppercase;
+}
 .top nav { display: flex; gap: 8px; align-items: center; }
 .top nav a { text-decoration: none; color: var(--mute); font-weight: 600; font-size: 14.5px; padding: 5px 10px; border-radius: 999px; }
 .top nav a:hover { color: var(--ink); }
 .top nav a.on { color: #111; background: var(--y); }
-#kbtn {
-  border: 1.5px solid #111; background: #fff; border-radius: 999px;
-  padding: 6px 10px; font-weight: 700; font-size: 12px; cursor: pointer;
-  box-shadow: 3px 3px 0 var(--y);
-}
+.top nav a { transition: background .2s ease, color .2s ease, transform .2s ease; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
 .hero {
   position: relative;
@@ -117,6 +132,8 @@ button { font: inherit; color: inherit; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 .lead { margin-top: 18px; max-width: 46ch; color: #3c3934; font-size: 18px; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.now { margin: 16px 0 0; font-weight: 800; }
+.seek { margin: 6px 0 0; max-width: 46ch; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 10px 16px;
   border-radius: 999px; border: 1.5px solid #111; background: #fff; color: #111; text-decoration: none; font-weight: 700; font-size: 14.5px;
@@ -124,21 +141,36 @@ button { font: inherit; color: inherit; }
 }
 .btn.primary { background: var(--y); }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 #111; }
-.shot { position: relative; justify-self: end; width: 100%; max-width: 420px; z-index: 0; }
+.shot { position: relative; justify-self: end; width: 100%; max-width: 380px; z-index: 0; }
 .disc {
-  position: absolute; z-index: -1; width: 108%; aspect-ratio: 1; right: -4%; left: auto; top: -4%;
-  background: var(--y); border-radius: 50%;
-  animation: disc 7s ease-in-out infinite;
+  position: absolute; z-index: -1;
+  inset-block: 7% 18%;
+  inset-inline-start: 14%;
+  inset-inline-end: -8%;
+  background: var(--y); border: 2px solid #111; border-radius: 32px;
+  animation: plate 5.5s ease-in-out infinite;
 }
-@keyframes disc { 50% { transform: scale(1.04) translateY(8px); } }
+@keyframes plate { 50% { transform: rotate(-4deg) translate(6px, 10px); } }
 .frame {
-  border: 2px solid #111; border-radius: 28px; overflow: hidden; background: #fff;
-  box-shadow: 12px 12px 0 #111, inset 0 0 0 6px var(--y); aspect-ratio: 4/5;
+  position: relative;
+  border: 2px solid #111; border-radius: 28px 28px 72px 28px; overflow: hidden; background: #111;
+  box-shadow: 16px 16px 0 #111; aspect-ratio: 4/5;
+  animation: frameIn .9s cubic-bezier(.2,.7,.2,1) both;
 }
-.frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.frame::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.38) 48%, transparent 60%);
+  transform: translateX(-120%);
+  animation: sheen 4.8s ease-in-out 1.2s infinite;
+}
+@keyframes frameIn { from { opacity: 0; transform: translateY(28px) rotate(-2deg); } to { opacity: 1; transform: none; } }
+@keyframes sheen { 0%, 55% { transform: translateX(-120%); } 80%, 100% { transform: translateX(120%); } }
+.frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; display: block; transform: scale(1.04); }
 .who {
+  position: relative; z-index: 2;
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-  margin: 28px 2px 0 0; font-size: 14px; line-height: 1.3;
+  margin: 18px 0 0; padding-top: 4px; font-size: 14px; line-height: 1.3;
+  background: var(--bg);
 }
 .who b { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.03em; }
 .who span { color: var(--mute); font-weight: 500; }
@@ -184,6 +216,13 @@ section h2 { font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; line-height:
 .own article:nth-child(2)::before { content: "{ }"; }
 .own article:nth-child(3)::before { content: "◈"; }
 .projects { display: flex; flex-direction: column; gap: 28px; margin-top: 28px; }
+@media (min-width: 1100px) {
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch; }
+  .projects .project { display: flex; flex-direction: column; height: 100%; }
+  .projects .project .links { margin-top: auto; }
+  .projects .viewport { height: 240px; }
+  .projects .stills figure { flex-basis: 210px; }
+}
 .project {
   position: relative; background: var(--card); border: 2px solid #111; border-radius: 22px; padding: 22px 22px 26px;
   box-shadow: 10px 10px 0 var(--y); overflow: hidden;
@@ -272,29 +311,31 @@ footer.contact { padding: 90px 0 80px; }
 footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: var(--y); }
 .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
 .rv.in { opacity: 1; transform: none; }
-.project.rv { transform: translateY(28px); }
+.project.rv { transform: translateY(36px); }
 .project.rv.in { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
-#pal { position: fixed; inset: 0; z-index: 95; background: rgba(10,10,10,.55); display: none; align-items: flex-start; justify-content: center; padding: 14vh 16px; }
-#pal.open { display: flex; }
-#pal .bx { width: min(560px, 100%); background: #fff; color: #111; border: 2px solid #111; border-radius: 16px; overflow: hidden; box-shadow: 12px 12px 0 var(--y); }
-#pal input { width: 100%; border: 0; border-bottom: 1.5px solid #111; padding: 16px 18px; font: 700 18px "Instrument Sans", sans-serif; outline: 0; background: transparent; }
-#pal ul { margin: 0; padding: 6px 0; max-height: 46vh; overflow: auto; }
-#pal li { list-style: none; padding: 12px 18px; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; }
-#pal li.on { background: #111; color: var(--y); }
+.own article.rv { transform: translateY(24px) scale(.98); }
+.own article.rv.in { transform: none; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 @media (max-width: 980px) {
   .hero, .own, .split, .rows > li, .skill { grid-template-columns: 1fr; }
   .tsteps { grid-template-columns: 1fr; }
-  .shot { justify-self: center; width: min(100%, 360px); margin-top: 8px; }
-  .disc { width: 100%; right: 0; top: 2%; }
+  .shot { justify-self: center; width: min(100%, 340px); margin-top: 8px; }
   .hero { gap: 32px; padding-top: 32px; }
   .hero h1 { max-width: 14ch; }
 }
 @media (max-width: 720px) {
-  .top { flex-wrap: wrap; padding: 12px 16px; }
+  body { padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
+  .top { flex-wrap: nowrap; padding: 10px 16px; padding-top: calc(10px + env(safe-area-inset-top)); background: var(--bg); backdrop-filter: none; }
   .wrap { padding: 0 16px; }
-  .top nav { order: 3; width: 100%; gap: 2px; overflow: auto; }
-  .top nav a { display: inline; white-space: nowrap; font-size: 14px; padding: 4px 8px; }
+  .top nav {
+    position: fixed; inset: auto 0 0 0; z-index: 50;
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px;
+    width: auto; overflow: visible;
+    background: #111; border-top: 2px solid #111;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
+  }
+  .top nav a { display: block; text-align: center; white-space: nowrap; color: #f4f1e8; font-size: 11px; font-weight: 700; padding: 8px 2px; border-radius: 10px; }
+  .top nav a.on { color: #111; background: var(--y); }
   .tools { margin-inline-start: auto; }
   .hero { padding-top: 20px; }
   .hero h1 { font-size: clamp(38px, 11vw, 52px); max-width: none; }
@@ -308,7 +349,7 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
   .metric b { font-size: 32px; }
   .project { padding: 16px; }
   .chrome { flex-wrap: wrap; }
-  .viewport { height: 420px; }
+  .viewport { height: 220px; }
   section { padding-top: 56px; }
   section h2, footer.contact h2 { max-width: none; }
   .cta .btn { flex: 1 1 auto; }
@@ -317,7 +358,7 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   #pre, #cr { display: none; }
-  .w, .disc, .dot, .mt, .rv { animation: none; transition: none; opacity: 1; transform: none; }
+  .w, .disc, .dot, .mt, .rv, .frame, .frame::after { animation: none; transition: none; opacity: 1; transform: none; }
   .project, .project.rv, .project.rv.in { transform: none; }
   .btn:hover { transform: none; }
 }
@@ -327,10 +368,11 @@ footer.contact h2 { font-size: clamp(46px, 7vw, 84px); max-width: 10ch; color: v
 .langs button[aria-pressed="true"] { background: #111; color: var(--y); }
 html[dir="rtl"] body,
 html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
-html[dir="rtl"] .brand, html[dir="rtl"] .who b, html[dir="rtl"] .role, html[dir="rtl"] .tstep h3, html[dir="rtl"] #pre {
+html[dir="rtl"] .brand, html[dir="rtl"] .wm, html[dir="rtl"] .who b, html[dir="rtl"] .role, html[dir="rtl"] .tstep h3, html[dir="rtl"] #pre {
   font-family: "Cairo", "Instrument Sans", sans-serif;
   letter-spacing: 0;
 }
+html[dir="rtl"] .wm { letter-spacing: 0; text-transform: none; font-size: 18px; }
 html[dir="rtl"] .kicker { letter-spacing: .04em; }
 html[dir="rtl"] .role { letter-spacing: 0; text-transform: none; font-size: 20px; }
 html[dir="rtl"] .hero h1 { line-height: 1.2; max-width: none; }
@@ -342,10 +384,7 @@ html[dir="rtl"] .sub, html[dir="rtl"] .story, html[dir="rtl"] .blurb { line-heig
 html[dir="rtl"] .sub { max-width: 44em; }
 html[dir="rtl"] .fact span { max-width: 24ch; }
 html[dir="rtl"] #bar { transform-origin: 100% 50%; }
-html[dir="rtl"] .disc { right: auto; left: -4%; }
-@media (max-width: 980px) {
-  html[dir="rtl"] .disc { left: 0; width: 100%; }
-}
+html[dir="rtl"] .disc { animation-direction: reverse; }
 html[dir="rtl"] .fact b,
 html[dir="rtl"] .metric b,
 html[dir="rtl"] .idx,
@@ -367,7 +406,7 @@ html[dir="rtl"] a[href^="mailto"] {
 <div id="pre" aria-hidden="true"><span id="pre-t"></span></div>
 <div id="bar" aria-hidden="true"></div>
 <header class="top">
-  <a class="brand" href="#top">Mahmoud Ahmed</a>
+  <a class="brand" href="#top"><span class="wm">Mahmoud Ahmed</span></a>
   <nav aria-label="Sections">
     <a href="#range">Range</a>
     <a href="#work">Work</a>
@@ -381,7 +420,6 @@ html[dir="rtl"] a[href^="mailto"] {
       <button type="button" id="lang-en" aria-pressed="true">EN</button>
       <button type="button" id="lang-ar" aria-pressed="false">عربي</button>
     </div>
-    <button type="button" id="kbtn">Ctrl K</button>
   </div>
 </header>
 <main id="top">
@@ -392,15 +430,13 @@ html[dir="rtl"] a[href^="mailto"] {
       <p class="role">Software Engineer</p>
       <p class="role">Web Applications</p>
       <h1 id="line">The product decides the stack.</h1>
+      <p class="seek">Full-stack software engineer. The screen and the <bdi>API</bdi>. Cairo or remote.</p>
+      <p class="now">Now at <bdi>Bood</bdi>, since Oct 2025. <bdi>ProTrack</bdi> and <bdi>MAF Admin</bdi>.</p>
       <p class="lead">Web products for 3 years. <strong>Angular</strong> and <strong>React</strong> on the screen. <strong>.NET</strong> and Node.js on the API. <strong>ProTrack</strong> and <strong>MAF Admin</strong> run on ASP.NET Core. <strong>LifeCare</strong>, <strong>Codevera</strong>, and <strong>Alpine</strong> run on Node.js. CRM BI on Microsoft 365.</p>
       <div class="cta">
-        <a class="btn primary" href="mailto:mahmoudeldeba8@gmail.com">Email me</a>
-        <a class="btn" href="tel:+201019672937">+20 101 967 2937</a>
-        <a class="btn" href="https://github.com/MahmoudELdeba34" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/mahmoud-ahmed-986276196/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn primary" href="#work">See the work</a>
         <a class="btn cvf" href="https://drive.google.com/file/d/1Hf_NuVkRDCiVPggp3Y0C7li3XO6pyVso/view?usp=sharing" target="_blank" rel="noopener">Frontend CV</a>
         <a class="btn cvs" href="https://drive.google.com/file/d/1j04DKG77jX5Ts6MKXNWd9omdxyIqSflk/view?usp=sharing" target="_blank" rel="noopener">Software CV</a>
-        <a class="btn" href="#work">See the work</a>
       </div>
     </div>
     <figure class="shot">
@@ -453,32 +489,32 @@ html[dir="rtl"] a[href^="mailto"] {
         <div class="project-top">
           <div class="idx">01</div>
           <div><h3>ProTrack V2</h3><p class="kind">Multi-tenant HR, payroll, and projects</p><p class="also">Also in range</p></div>
-          <div class="metric"><b>4</b><span>roles with RBAC</span></div>
+          <div class="metric"><b><bdi>30%</bdi></b><span>less manual QA</span></div>
         </div>
         <p class="blurb">Sole frontend owner and project lead. The assistant lives inside the product.</p>
+        <p class="outcome">HR, payroll, and tasks were separate steps. I owned the Angular frontend and the assistant, with a different screen for each of 4 roles, and cut manual QA checks by about 30%.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">v2.pro-track.cloud</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://v2.pro-track.cloud/" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/protrack.jpg" alt="ProTrack"><iframe src="https://v2.pro-track.cloud/" title="ProTrack V2 live preview" loading="eager" fetchpriority="high" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>ASP.NET Core</li><li>SignalR</li><li>SQL Server</li><li>Grok</li></ul>
         <p class="story">Attendance, leave, payroll, and tasks, with a different UI for Super Admin, Tenant Admin, Manager, and Employee. The assistant streams context-aware answers through HR and payroll. I co-designed the REST contracts with the backend team.</p>
-        <p class="outcome">HR, payroll, and tasks were separate steps. I owned the Angular frontend and the assistant, with a different screen for each of 4 roles, and cut manual QA checks by about 30%.</p>
         <div class="links"><a class="btn primary" href="https://v2.pro-track.cloud/" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/Hrigo-Project/ProTrack-V2" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="2" data-tags="fullstack frontend backend crm">
         <div class="project-top">
           <div class="idx">02</div>
           <div><h3>LifeCare</h3><p class="kind">Multi-branch clinic operating system</p><p class="also">Also in range</p></div>
-          <div class="metric"><b>70+</b><span>REST endpoints</span></div>
+          <div class="metric"><b><bdi>14</bdi></b><span>modules</span></div>
         </div>
         <p class="blurb">EMR, scheduling, billing, HR, CRM, and a patient portal. AI sits in the medical workflow.</p>
+        <p class="outcome">Records, scheduling, and billing were apart. I built the system: 14 modules, 70+ REST endpoints, and 13 roles, including a doctor view across 10 related records.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">medical-care-n4in-sigma.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://medical-care-n4in-sigma.vercel.app" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/lifecare.jpg" alt="LifeCare"><iframe src="https://medical-care-n4in-sigma.vercel.app" title="LifeCare live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>JWT</li><li>RAG</li></ul>
         <p class="story">Fourteen modules and 65 automated tests. JWT access and refresh tokens rotate. Thirteen RBAC roles, including a Doctor 360° view across 10 related records.</p>
-        <p class="outcome">Records, scheduling, and billing were apart. I built the system: 14 modules, 70+ REST endpoints, and 13 roles, including a doctor view across 10 related records.</p>
         <div class="links"><a class="btn primary" href="https://medical-care-n4in-sigma.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Medical-Care" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="3" data-tags="fullstack frontend backend">
@@ -488,13 +524,13 @@ html[dir="rtl"] a[href^="mailto"] {
           <div class="metric"><b>1v1</b><span>live coding battles</span></div>
         </div>
         <p class="blurb">A tutor that reads the student’s code, plus real-time duels and chat.</p>
+        <p class="outcome">Students needed a tutor that does not hand over the answer. I built the Groq tutor, live 1v1 battles, and Arabic RTL in the same product.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">codevera-tech.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://codevera-tech.vercel.app" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/codevera.jpg" alt="Codevera"><iframe src="https://codevera-tech.vercel.app" title="Codevera live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular</li><li>Node.js</li><li>MongoDB</li><li>Socket.io</li><li>Groq</li><li>Monaco</li></ul>
         <p class="story">The tutor, on Groq with RAG, aims the student at the fix without handing over the answer. Socket.io runs the battles and a live chat with voice notes. Exams carry anti-cheat telemetry. Arabic RTL and dark mode.</p>
-        <p class="outcome">Students needed a tutor that does not hand over the answer. I built the Groq tutor, live 1v1 battles, and Arabic RTL in the same product.</p>
         <div class="links"><a class="btn primary" href="https://codevera-tech.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Codevara" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="4" data-tags="crm frontend fullstack backend">
@@ -504,13 +540,13 @@ html[dir="rtl"] a[href^="mailto"] {
           <div class="metric"><b>6</b><span>admin modules</span></div>
         </div>
         <p class="blurb">Sales, spare parts, and service booking, with live notifications.</p>
+        <p class="outcome">Sales, parts, and service bookings needed one console. I led the frontend: 6 modules and live SignalR notifications on desktop, tablet, and mobile.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">maf-admindashboard.runasp.net</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://maf-admindashboard.runasp.net" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/maf.jpg" alt="MAF Admin"><iframe src="https://maf-admindashboard.runasp.net" title="MAF Admin live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>ASP.NET Core</li><li>SignalR</li><li>SQL Server</li><li>SCSS</li></ul>
         <p class="story">Team lead. Clean Architecture, JWT interceptors, route guards, SSR, and SignalR notifications. Users, products, orders, payouts, rewards, and ads, on desktop, tablet, and mobile.</p>
-        <p class="outcome">Sales, parts, and service bookings needed one console. I led the frontend: 6 modules and live SignalR notifications on desktop, tablet, and mobile.</p>
         <div class="links"><a class="btn primary" href="https://maf-admindashboard.runasp.net" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/Hrigo-Project/Maf-Admin-Dashboard" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="5" data-tags="fullstack frontend backend">
@@ -520,13 +556,13 @@ html[dir="rtl"] a[href^="mailto"] {
           <div class="metric"><b>3DS</b><span>card checkout with OTP</span></div>
         </div>
         <p class="blurb">Filters, a strap configurator, and a checkout the server actually checks.</p>
+        <p class="outcome">The catalog had to take a real payment. I built filters, a strap configurator, and card checkout with a 3D Secure OTP check on the API.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">alpine-ui-beta.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://alpine-ui-beta.vercel.app" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/alpine.jpg" alt="Alpine"><iframe src="https://alpine-ui-beta.vercel.app" title="Alpine live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
         <ul class="chips"><li>Angular 19</li><li>Signals</li><li>Node.js</li><li>Express</li><li>SQLite</li><li>Vercel</li></ul>
         <p class="story">Brand and model filters, a strap configurator, cash on delivery, and card checkout with a 3D Secure OTP step. Phone and address validation is enforced on the API.</p>
-        <p class="outcome">The catalog had to take a real payment. I built filters, a strap configurator, and card checkout with a 3D Secure OTP check on the API.</p>
         <div class="links"><a class="btn primary" href="https://alpine-ui-beta.vercel.app" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Apin-" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="6" data-tags="fullstack frontend backend">
@@ -536,6 +572,7 @@ html[dir="rtl"] a[href^="mailto"] {
           <div class="metric"><b>Stripe</b><span>card checkout</span></div>
         </div>
         <p class="blurb">Search, filters, a cart, JWT accounts, and a real card payment.</p>
+        <p class="outcome">An ITI MEAN project, built with the team. Angular on the screen, Express and MongoDB behind it, and a real payment step.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">localhost · ITI</span><a href="https://github.com/MahmoudELdeba34/Full-Stack--Ecommerce-Mean-" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/exclusive-home.png" alt="Exclusive store home"></div>
@@ -548,7 +585,6 @@ html[dir="rtl"] a[href^="mailto"] {
         </div>
         <ul class="chips"><li>Angular</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>JWT</li><li>Stripe</li></ul>
         <p class="story">Electronics, grocery, and pets. Live search, category and price filters, product pages, a cart, JWT registration and login, and Stripe checkout. REST for products, users, and orders.</p>
-        <p class="outcome">An ITI MEAN project, built with the team. Angular on the screen, Express and MongoDB behind it, and a real payment step.</p>
         <div class="links"><a class="btn" href="https://github.com/MahmoudELdeba34/Full-Stack--Ecommerce-Mean-" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="7" data-tags="frontend">
@@ -558,6 +594,7 @@ html[dir="rtl"] a[href^="mailto"] {
           <div class="metric"><b>20</b><span>meals in a view</span></div>
         </div>
         <p class="blurb">Search by name or first letter, then browse by category, area, and ingredient.</p>
+        <p class="outcome">The menu had to be searchable in more than one way. I built name and letter search, category, area, and ingredient views, and a meal page with the recipe and the video.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">mahmoudeldeba34.github.io/Yummy-website</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://mahmoudeldeba34.github.io/Yummy-website/" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/yummy-home.png" alt="Yummy meal grid"><iframe src="https://mahmoudeldeba34.github.io/Yummy-website/" title="Yummy live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -570,7 +607,6 @@ html[dir="rtl"] a[href^="mailto"] {
         </div>
         <ul class="chips"><li>JavaScript</li><li>Bootstrap</li><li>Fetch API</li><li>TheMealDB</li></ul>
         <p class="story">TheMealDB. Up to 20 meals for the category, the area, or the ingredient. A meal opens to the photo, the instructions, the area, the category, the recipes, the tags, and links to the source and YouTube. The contact form stays closed until every field matches its regex.</p>
-        <p class="outcome">The menu had to be searchable in more than one way. I built name and letter search, category, area, and ingredient views, and a meal page with the recipe and the video.</p>
         <div class="links"><a class="btn primary" href="https://mahmoudeldeba34.github.io/Yummy-website/" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Yummy-website" target="_blank" rel="noopener">Source</a></div>
       </article>
       <article class="project" data-i="8" data-tags="frontend">
@@ -580,6 +616,7 @@ html[dir="rtl"] a[href^="mailto"] {
           <div class="metric"><b>10</b><span>categories</span></div>
         </div>
         <p class="blurb">Home, product search, a cart with quantity, and checkout.</p>
+        <p class="outcome">The catalog had to feel like a store, not a list. I built the home, the search, the product page, the wishlist, and a cart that keeps the quantity and the total with the account.</p>
         <div class="browser">
           <div class="chrome"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url">master-e-commerce-eight.vercel.app</span><button type="button" class="use" data-unlock>Use live app</button><button type="button" class="release" data-lock>Release</button><a href="https://master-e-commerce-eight.vercel.app/" target="_blank" rel="noopener">Open</a></div>
           <div class="viewport"><img class="poster" src="images/eldeeb-home.png" alt="ELdeebCart home"><iframe src="https://master-e-commerce-eight.vercel.app/" title="ELdeebCart live preview" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -592,7 +629,6 @@ html[dir="rtl"] a[href^="mailto"] {
         </div>
         <ul class="chips"><li>Angular</li><li>TypeScript</li><li>Tailwind</li><li>Sass</li></ul>
         <p class="story">Fashion, mobiles, electronics, books, beauty, toys, and a supermarket. Search, a product page, a wishlist, and a cart that updates the quantity and the total. Checkout takes the address, the phone, and the city, then offers pay on shipping or pay online.</p>
-        <p class="outcome">The catalog had to feel like a store, not a list. I built the home, the search, the product page, the wishlist, and a cart that keeps the quantity and the total with the account.</p>
         <p class="demo">Try it <bdi>mahmoudeldeba9@gmail.com</bdi><bdi>123123</bdi></p>
         <div class="links"><a class="btn primary" href="https://master-e-commerce-eight.vercel.app/" target="_blank" rel="noopener">Live site</a><a class="btn" href="https://github.com/MahmoudELdeba34/Master-E-commerce" target="_blank" rel="noopener">Source</a></div>
       </article>
@@ -711,7 +747,6 @@ html[dir="rtl"] a[href^="mailto"] {
   </footer>
 </div>
 </main>
-<div id="pal"><div class="bx" role="dialog" aria-label="Command palette"><input id="pi" placeholder="Jump, switch lens, write…" aria-label="Search"><ul id="pl"></ul></div></div>
 <script>
 (function () {
   var rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -729,11 +764,6 @@ html[dir="rtl"] a[href^="mailto"] {
 
   var lensKey = "frontend";
   var booted = false;
-  var actions = [];
-  var sel = 0;
-  var list = [];
-  var pal = document.getElementById("pal");
-  var pi = document.getElementById("pi");
 
   function bind(sel, ar, html) {
     var nodes = document.querySelectorAll(sel);
@@ -884,9 +914,6 @@ html[dir="rtl"] a[href^="mailto"] {
     document.querySelector(".langs").setAttribute("aria-label", lang === "ar" ? "اللغة" : "Language");
     document.querySelector(".top nav").setAttribute("aria-label", lang === "ar" ? "أقسام الصفحة" : "Sections");
     document.querySelector(".lens").setAttribute("aria-label", lang === "ar" ? "طريقة قراءة الأعمال" : "Choose how to read the work");
-    pal.querySelector(".bx").setAttribute("aria-label", lang === "ar" ? "لوحة الأوامر" : "Command palette");
-    pi.placeholder = lang === "ar" ? "انتقل، غيّر العدسة، أو اكتب…" : "Jump, switch lens, write…";
-    pi.setAttribute("aria-label", lang === "ar" ? "بحث" : "Search");
   }
   function setLang(next) {
     next = next === "ar" ? "ar" : "en";
@@ -895,42 +922,19 @@ html[dir="rtl"] a[href^="mailto"] {
     try { localStorage.setItem("mahmoud-lang", lang); } catch (e) {}
     paint();
     apply(lensKey);
-    actions = buildActions();
-    if (booted && pal.classList.contains("open")) { sel = 0; draw(); }
     booted = true;
   }
 
-  var go = function (id) { return function () { var node = document.querySelector(id); if (node) node.scrollIntoView({ behavior: rm ? "auto" : "smooth" }); }; };
-  var lensTo = function (k) { return function () { apply(k); var target = document.getElementById("range"); if (target) target.scrollIntoView({ behavior: rm ? "auto" : "smooth" }); }; };
-  function buildActions() {
-    var ar = lang === "ar";
-    return [
-      [ar ? "إلى الأعمال" : "Go to work", ar ? "انتقال" : "Jump", go("#work")],
-      [ar ? "إلى التخرج" : "Go to the thesis", ar ? "انتقال" : "Jump", go("#thesis")],
-      [ar ? "إلى المهارات" : "Go to skills", ar ? "انتقال" : "Jump", go("#skills")],
-      [ar ? "إلى المسيرة" : "Go to career", ar ? "انتقال" : "Jump", go("#career")],
-      [ar ? "إلى التواصل" : "Go to contact", ar ? "انتقال" : "Jump", go("#contact")],
-      [ar ? "اعرض الواجهة" : "Read as frontend", ar ? "عدسة" : "Lens", lensTo("frontend")],
-      [ar ? "اعرض الباك إند" : "Read as backend", ar ? "عدسة" : "Lens", lensTo("backend")],
-      [ar ? "اعرض الفول ستاك" : "Read as full-stack", ar ? "عدسة" : "Lens", lensTo("fullstack")],
-      [ar ? "اعرض أنظمة الشركات" : "Read as enterprise", ar ? "عدسة" : "Lens", lensTo("crm")],
-      [ar ? "راسل محمود" : "Email Mahmoud", ar ? "إجراء" : "Action", function () { location.href = "mailto:mahmoudeldeba8@gmail.com"; }],
-      [ar ? "لينكدإن" : "Open LinkedIn", ar ? "إجراء" : "Action", function () { window.open("https://www.linkedin.com/in/mahmoud-ahmed-986276196/", "_blank", "noopener"); }],
-      [ar ? "سيرة الفرونت" : "Open frontend CV", ar ? "إجراء" : "Action", function () { window.open("https://drive.google.com/file/d/1Hf_NuVkRDCiVPggp3Y0C7li3XO6pyVso/view?usp=sharing", "_blank", "noopener"); }],
-      [ar ? "سيرة السوفت" : "Open software CV", ar ? "إجراء" : "Action", function () { window.open("https://drive.google.com/file/d/1j04DKG77jX5Ts6MKXNWd9omdxyIqSflk/view?usp=sharing", "_blank", "noopener"); }],
-      [ar ? "English" : "عربي", ar ? "اللغة" : "Language", function () { setLang(lang === "ar" ? "en" : "ar"); }]
-    ];
-  }
-
   bind(".skip", "انتقل إلى الأعمال");
-  bind(".brand, .who b", "محمود أحمد");
+  bind(".wm, .who b", "محمود أحمد");
   bind(".who span", "القاهرة، مصر");
   bind(".top nav a", ["النطاق", "الأعمال", "التخرج", "المهارات", "المسيرة", "تواصل"]);
   bind(".kick", ["ريموت أو أون سايت، عادي · متاح", "نبذة", "النطاق", "أعمال مختارة", "التخرج", "المهارات", "المسيرة", "التعليم", "الشهادات", "تواصل"]);
   bind("#line", "المنتج يختار التقنية.");
   bind(".role", ["مهندس برمجيات", "تطبيقات ويب"]);
+  bind(".seek", "مهندس برمجيات فول ستاك. الشاشة والـ <bdi>API</bdi>. القاهرة أو عن بُعد.", true);
+  bind(".now", "دلوقتي في <bdi>Bood</bdi>، من أكتوبر 2025. <bdi>ProTrack</bdi> و <bdi>MAF Admin</bdi>.", true);
   bind(".lead", "منتجات ويب من 3 سنوات. <strong>Angular</strong> و <strong>React</strong> للشاشة. <strong>.NET</strong> و Node.js للـ API. <strong>ProTrack</strong> و <strong>MAF Admin</strong> على ASP.NET Core. <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong> على Node.js. و CRM BI على Microsoft 365.", true);
-  bind(".hero .cta a[href^='mailto']", "راسلني");
   bind(".hero .cta a[href='#work']", "شاهد الأعمال");
   bind(".cvf", "سيرة الفرونت");
   bind(".cvs", "سيرة السوفت");
@@ -943,7 +947,7 @@ html[dir="rtl"] a[href^="mailto"] {
   bind("#work h2", "ثمانية منتجات. سبعة منها مباشرة داخل الصفحة.");
   bind("#work > .sub", "كل إطار منشور هو النسخة الحية. ELdeebCart و Yummy منشوران. Exclusive متجر ITI، ومعروض من التطبيق وهو شغال. ما يقع خارج العدسة المختارة يبقى ظاهرًا، لأن الاتساع هو المقصود.");
   bind(".project .kind", ["موارد بشرية ومرتبات ومشاريع، لعدة شركات", "نظام تشغيل لعيادة متعددة الفروع", "منصة تعلم بالذكاء الاصطناعي للمبرمجين", "تشغيل سوق سيارات", "متجر ساعات فاخرة", "متجر MEAN من ITI", "مستكشف وجبات", "واجهة متجر بـ Angular"]);
-  bind(".project .metric span", ["أدوار بصلاحيات", "واجهة REST", "مبارزة مباشرة", "وحدات إدارة", "دفع بالبطاقة و OTP", "دفع بالبطاقة", "وجبة في العرض", "فئات"]);
+  bind(".project .metric span", ["أقل فحص جودة يدوي", "وحدة", "مبارزة مباشرة", "وحدات إدارة", "دفع بالبطاقة و OTP", "دفع بالبطاقة", "وجبة في العرض", "فئات"]);
   bind(".project .blurb", [
     "المالك الوحيد للواجهة وقائد المشروع. المساعد يعيش داخل المنتج.",
     "سجل طبي، ومواعيد، وفوترة، وموارد بشرية، و CRM، وبوابة للمريض. الذكاء الاصطناعي داخل سير العمل الطبي.",
@@ -1150,8 +1154,8 @@ html[dir="rtl"] a[href^="mailto"] {
       if (!c || c.querySelector(".browser.live")) return;
       var r = c.getBoundingClientRect();
       var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      c.style.setProperty("--rx", ((0.5 - py) * 4) + "deg");
-      c.style.setProperty("--ry", ((px - 0.5) * 5) + "deg");
+      c.style.setProperty("--rx", ((0.5 - py) * 7) + "deg");
+      c.style.setProperty("--ry", ((px - 0.5) * 8) + "deg");
       c.style.setProperty("--mx", (px * 100) + "%");
       c.style.setProperty("--my", (py * 100) + "%");
     });
@@ -1159,34 +1163,6 @@ html[dir="rtl"] a[href^="mailto"] {
       document.querySelectorAll(".project").forEach(function (card) { card.style.setProperty("--rx", "0deg"); card.style.setProperty("--ry", "0deg"); });
     });
   }
-
-  function draw() {
-    var q = pi.value.toLowerCase();
-    list = actions.filter(function (a) { return a[0].toLowerCase().indexOf(q) !== -1; });
-    sel = Math.min(sel, Math.max(list.length - 1, 0));
-    var ul = document.getElementById("pl");
-    ul.innerHTML = "";
-    list.forEach(function (a, i) {
-      var li = document.createElement("li");
-      li.className = i === sel ? "on" : "";
-      li.innerHTML = "<span>" + esc(a[0]) + "</span><small>" + esc(a[1]) + "</small>";
-      li.onclick = function () { run(a); };
-      ul.appendChild(li);
-    });
-  }
-  function run(a) { pal.classList.remove("open"); a[2](); }
-  function openPal() { pal.classList.add("open"); pi.value = ""; sel = 0; draw(); pi.focus(); }
-  document.getElementById("kbtn").onclick = openPal;
-  pal.addEventListener("click", function (e) { if (e.target === pal) pal.classList.remove("open"); });
-  pi.addEventListener("input", function () { sel = 0; draw(); });
-  addEventListener("keydown", function (e) {
-    if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === "k") { e.preventDefault(); openPal(); return; }
-    if (!pal.classList.contains("open")) return;
-    if (e.key === "Escape") pal.classList.remove("open");
-    if (e.key === "ArrowDown") { e.preventDefault(); sel = Math.min(sel + 1, list.length - 1); draw(); }
-    if (e.key === "ArrowUp") { e.preventDefault(); sel = Math.max(sel - 1, 0); draw(); }
-    if (e.key === "Enter" && list[sel]) run(list[sel]);
-  });
 })();
 </script>
 </body>
