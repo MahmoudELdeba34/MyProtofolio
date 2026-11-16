@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Mahmoud Ahmed — software engineer in Cairo. Interfaces, APIs, data, and CRM. Enterprise products, and whatever stack the work needs next.">
+<meta name="description" content="Mahmoud Ahmed — software engineer in Cairo. Angular, React, ASP.NET Core, and Node.js. Enterprise products, and whatever stack the work needs next.">
 <meta name="theme-color" content="#111111">
 <meta property="og:title" content="Mahmoud Ahmed — Software Engineer">
 <meta property="og:description" content="Enterprise products, multi-tenant SaaS, and the stack the work needs. Cairo.">
@@ -108,7 +108,7 @@ button { font: inherit; color: inherit; }
   display: flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px;
 }
-.role { display: inline-block; margin: 0 0 14px; padding: 4px 10px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; background: var(--y); color: #111; border: 1.5px solid #111; box-shadow: 3px 3px 0 #111; }
+.role { display: inline-block; margin: 0 0 14px; margin-inline-end: 8px; padding: 4px 10px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; background: var(--y); color: #111; border: 1.5px solid #111; box-shadow: 3px 3px 0 #111; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #111; box-shadow: 0 0 0 0 var(--y); animation: ping 1.6s ease-out infinite; }
 @keyframes ping { 70% { box-shadow: 0 0 0 8px transparent; } }
 .hero > div:first-child { position: relative; z-index: 2; }
@@ -384,8 +384,9 @@ html[dir="rtl"] a[href^="mailto"] {
     <div>
       <p class="kicker"><i class="dot"></i> <span class="kick">Cairo · Remote · Open</span></p>
       <p class="role">Software Engineer</p>
+      <p class="role">Web</p>
       <h1 id="line">The product decides the stack.</h1>
-      <p class="lead">Software engineer with 3 years across the screen, the API, and the data. Angular on <strong>ProTrack</strong> and <strong>MAF Admin</strong>. Node.js, Express, and MongoDB on <strong>LifeCare</strong>, <strong>Codevera</strong>, and <strong>Alpine</strong>. CRM BI on Microsoft 365.</p>
+      <p class="lead">Web products for 3 years. <strong>Angular</strong> and <strong>React</strong> on the screen. <strong>.NET</strong> and Node.js on the API. <strong>ProTrack</strong> and <strong>MAF Admin</strong> run on ASP.NET Core. <strong>LifeCare</strong>, <strong>Codevera</strong>, and <strong>Alpine</strong> run on Node.js. CRM BI on Microsoft 365.</p>
       <div class="cta">
         <a class="btn primary" href="mailto:mahmoudeldeba8@gmail.com">Email me</a>
         <a class="btn" href="tel:+201019672937">+20 101 967 2937</a>
@@ -414,7 +415,7 @@ html[dir="rtl"] a[href^="mailto"] {
   <section id="about" class="dark">
     <p class="kicker"><span class="kick">About</span></p>
     <h2>The screen, the API, and the system around them.</h2>
-    <p class="sub">Software engineer with 3 years of experience. Angular and TypeScript on <strong>ProTrack</strong> and <strong>MAF Admin Dashboard</strong>. Backend with Node.js, Express.js, and MongoDB on <strong>LifeCare</strong>, <strong>Codevera</strong>, and <strong>Alpine</strong>. Architecture, API integration, performance, REST, authentication, and AI features inside the product. CRM BI on Microsoft 365.</p>
+    <p class="sub">I ship the screen and the system behind it. Angular and React for the interface. ASP.NET Core for <strong>ProTrack</strong> and <strong>MAF Admin</strong>. Node.js, Express, and MongoDB for <strong>LifeCare</strong>, <strong>Codevera</strong>, and <strong>Alpine</strong>, including auth, REST, and AI inside the product. CRM BI on Microsoft 365. The stack follows the product. A new tool is the first task, not a reason to wait.</p>
     <p class="sub">Native Arabic, professional English. RTL is a requirement I design for, not a patch at the end. Egyptian. Military service exempted.</p>
   </section>
 
@@ -851,15 +852,15 @@ html[dir="rtl"] a[href^="mailto"] {
   bind(".top nav a", ["النطاق", "الأعمال", "التخرج", "المهارات", "المسيرة", "تواصل"]);
   bind(".kick", ["القاهرة · عن بُعد · متاح", "نبذة", "النطاق", "أعمال مختارة", "التخرج", "المهارات", "المسيرة", "التعليم", "الشهادات", "تواصل"]);
   bind("#line", "المنتج يختار التقنية.");
-  bind(".role", "مهندس برمجيات");
-  bind(".lead", "مهندس برمجيات بخبرة 3 سنوات، من الشاشة إلى الـ API والبيانات. Angular في <strong>ProTrack</strong> و <strong>MAF Admin</strong>. و Node.js و Express و MongoDB في <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong>. و CRM BI على Microsoft 365.", true);
+  bind(".role", ["مهندس برمجيات", "ويب"]);
+  bind(".lead", "منتجات ويب من 3 سنوات. <strong>Angular</strong> و <strong>React</strong> للشاشة. <strong>.NET</strong> و Node.js للـ API. <strong>ProTrack</strong> و <strong>MAF Admin</strong> على ASP.NET Core. <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong> على Node.js. و CRM BI على Microsoft 365.", true);
   bind(".hero .cta a[href^='mailto']", "راسلني");
   bind(".hero .cta a[href='#work']", "شاهد الأعمال");
   bindSame(".cv", "السيرة");
   bind("#facts .fact span", ["سنوات في تطبيقات ويب تعمل فعليًا", "مستخدم في الوقت نفسه، وبالأداء نفسه", "أسرع في متوسط تحميل الصفحة", "قطاعات وصلت إلى الإنتاج"]);
   bind("#about h2", "الشاشة، والـ API، والنظام اللي حواليهم.");
   bind("#about .sub", [
-    "مهندس برمجيات بخبرة 3 سنوات. Angular و TypeScript في <strong>ProTrack</strong> و <strong>MAF Admin Dashboard</strong>. باك إند بـ Node.js و Express.js و MongoDB في <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong>. معمارية، وربط الـ API، وأداء، و REST، ومصادقة، وخصائص ذكاء داخل المنتج. CRM BI على Microsoft 365.",
+    "بسلّم الشاشة والنظام اللي وراها. Angular و React للواجهة. ASP.NET Core في <strong>ProTrack</strong> و <strong>MAF Admin</strong>. و Node.js و Express و MongoDB في <strong>LifeCare</strong> و <strong>Codevera</strong> و <strong>Alpine</strong>، ومنها المصادقة و REST والذكاء داخل المنتج. CRM BI على Microsoft 365. التقنية تتبع المنتج، والأداة الجديدة أول مهمة مش سبب للتأجيل.",
     "العربية لغتي الأم، والإنجليزية بمستوى مهني. اتجاه RTL مطلب أصممه من البداية، لا تعديل يُلحق في النهاية. مصري. معفى من التجنيد."
   ], true);
   bind("#work h2", "خمسة منتجات، مباشرة داخل الصفحة.");
@@ -963,7 +964,7 @@ html[dir="rtl"] a[href^="mailto"] {
   bind("title", "محمود أحمد محمود — مهندس برمجيات");
   var meta = document.querySelector('meta[name="description"]');
   meta.setAttribute("data-en", meta.getAttribute("content"));
-  meta.setAttribute("data-ar", "محمود أحمد محمود — مهندس برمجيات في القاهرة. واجهات، وواجهات برمجة، وبيانات، و CRM. منتجات للشركات، والتقنية التي يحتاجها العمل.");
+  meta.setAttribute("data-ar", "محمود أحمد محمود — مهندس برمجيات في القاهرة. Angular و React و ASP.NET Core و Node.js. منتجات للشركات، والتقنية التي يحتاجها العمل.");
 
   setLang(lang);
 
